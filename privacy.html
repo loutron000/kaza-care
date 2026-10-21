@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Read the Kaza-Care privacy policy and learn how information is handled in the platform."
+      content="Read the Kaza-Care privacy policy and learn how information is handled on the platform."
     />
-    <title>Privacy Policy | Kaza-Care</title>
+    <title>Privacy Policy | KazaCare</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo.png" />
 
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/main.js" defer></script>
   </head>
 
-  <body>
+  <body class="app-page">
     <header class="navbar navbar-logged-out">
       <div class="navbar-container">
-        <a href="index.html" class="navbar-brand" aria-label="Kaza-Care home">
+        <a
+          href="index.html"
+          class="navbar-brand"
+          aria-label="Kaza-Care home"
+        >
           <img src="assets/logo/logo.jpeg" alt="" class="navbar-logo" />
           <span class="navbar-name">
             <span class="navbar-name-kaza">KAZA</span>
@@ -51,7 +56,8 @@
             <button
               class="language-toggle"
               type="button"
-              aria-label="Switch language"
+              data-language-toggle
+              aria-label="Change language to Hausa"
             >
               Hausa
             </button>
@@ -61,13 +67,24 @@
         </nav>
       </div>
     </header>
+    <div class="app-layout">
+      <button
+        class="sidebar-overlay hidden"
+        type="button"
+        data-sidebar-overlay
+        aria-label="Close navigation sidebar"
+        tabindex="-1"
+      ></button>
 
-    <header class="navbar navbar-logged-in hidden">
-      <div class="navbar-container">
+      <aside
+        class="app-sidebar navbar-logged-in hidden"
+        id="app-sidebar"
+        aria-label="Application sidebar"
+      >
         <a
           href="dashboard.html"
-          class="navbar-brand"
-          aria-label="Kaza-Care home"
+          class="navbar-brand sidebar-brand"
+          aria-label="Kaza-Care dashboard"
         >
           <img src="assets/logo/logo.jpeg" alt="" class="navbar-logo" />
           <span class="navbar-name">
@@ -76,33 +93,116 @@
           </span>
         </a>
 
-        <button
-          class="navbar-toggle"
-          type="button"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="navbar-menu-logged-in"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <nav
-          class="navbar-menu"
-          id="navbar-menu-logged-in"
-          aria-label="Main navigation"
-        >
-          <ul class="navbar-links">
-            <li><a href="dashboard.html" class="navbar-link">Home</a></li>
-            <li><a href="map.html" class="navbar-link">Find a Vet</a></li>
-            <li><a href="records.html" class="navbar-link">Records</a></li>
+        <nav class="sidebar-navigation" aria-label="Main navigation">
+          <ul class="sidebar-links">
+            <li>
+              <a href="dashboard.html" class="sidebar-link">
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="map.html" class="sidebar-link">
+                <span>Find a Vet</span>
+              </a>
+            </li>
+            <li>
+              <a href="records.html" class="sidebar-link">
+                <span>Records</span>
+              </a>
+            </li>
+            <li>
+              <a href="vaccinations.html" class="sidebar-link">
+                <span>Vaccinations</span>
+              </a>
+            </li>
           </ul>
+        </nav>
 
-          <div class="navbar-actions">
+        <div class="sidebar-account">
+          <div class="profile-menu hidden" id="profile-menu">
+            <a href="records.html" class="profile-menu-item">
+              Account / Profile
+            </a>
+
+            <button
+              class="profile-menu-item"
+              type="button"
+              data-language-toggle
+              aria-label="Switch language to Hausa"
+            >
+              Language: <span data-language-label>English</span>
+            </button>
+
+            <button
+              class="profile-menu-item"
+              type="button"
+              data-theme-toggle
+              aria-label="Switch to dark theme"
+            >
+              <span data-theme-label>Dark theme</span>
+            </button>
+
+            <button
+              class="profile-menu-item profile-menu-logout"
+              type="button"
+              data-logout
+            >
+              Log Out
+            </button>
+          </div>
+
+          <button
+            class="sidebar-profile profile-button"
+            type="button"
+            id="profile-menu-toggle"
+            aria-expanded="false"
+            aria-controls="profile-menu"
+            aria-label="Open account menu"
+          >
+            <span class="profile-avatar" aria-hidden="true">U</span>
+
+            <span class="sidebar-profile-details">
+              <span class="sidebar-profile-name">Salma</span>
+              <span class="sidebar-profile-role">Poultry Farmer</span>
+            </span>
+
+            <svg
+              class="profile-chevron"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+        </div>
+      </aside>
+
+      <div class="app-main">
+        <header class="app-topbar navbar-logged-in hidden">
+          <button
+            class="sidebar-toggle"
+            type="button"
+            data-sidebar-toggle
+            aria-label="Open sidebar"
+            aria-expanded="false"
+            aria-controls="app-sidebar"
+          >
+            <span aria-hidden="true">☰</span>
+          </button>
+
+          <div class="app-topbar-actions">
             <button
               class="notification-button"
               type="button"
+              data-notifications
               aria-label="Notifications"
             >
               <svg
@@ -117,40 +217,19 @@
                 stroke-linejoin="round"
                 aria-hidden="true"
               >
-                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                />
                 <path d="M10 21h4" />
               </svg>
-            </button>
-
-            <button
-              class="profile-button"
-              type="button"
-              aria-label="Open profile menu"
-            >
-              <span class="profile-avatar" aria-hidden="true">LU</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
+              <span class="notification-indicator hidden"></span>
             </button>
           </div>
-        </nav>
-      </div>
-    </header>
+        </header>
 
-    <main id="main-content">
-      <!-- Keep your existing Privacy Policy content here. -->
-    </main>
+        <main>
+        </main>
+      </div>
+    </div>
   </body>
 </html>
-```

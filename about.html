@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Learn about Kaza-Care and our mission to support healthier poultry flocks." />
+    <meta
+      name="description"
+      content="Learn about Kaza-Care and our mission to support healthier poultry flocks."
+    />
     <title>About Us | KazaCare</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo.png" />
 
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -12,31 +16,50 @@
   </head>
 
   <body>
-    <!-- Logged-out navbar -->
     <header class="navbar navbar-logged-out">
       <div class="navbar-container">
         <a href="index.html" class="navbar-brand" aria-label="Kaza-Care home">
-          <img src="assets/logo/logo.jpeg" alt="" class="navbar-logo" />
+          <img src="assets/logo/logo.png" alt="" class="navbar-logo" />
           <span class="navbar-name">
             <span class="navbar-name-kaza">KAZA</span>
             <span class="navbar-name-care">CARE</span>
           </span>
         </a>
 
-        <button class="navbar-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navbar-menu-logged-out">
+        <button
+          class="navbar-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navbar-menu-logged-out"
+        >
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <nav class="navbar-menu" id="navbar-menu-logged-out" aria-label="Main navigation">
+        <nav
+          class="navbar-menu"
+          id="navbar-menu-logged-out"
+          aria-label="Main navigation"
+        >
           <ul class="navbar-links">
             <li><a href="index.html" class="navbar-link">Home</a></li>
-            <li><a href="about.html" class="navbar-link" aria-current="page">About</a></li>
+            <li>
+              <a href="about.html" class="navbar-link" aria-current="page">
+                About
+              </a>
+            </li>
           </ul>
 
           <div class="navbar-actions">
-            <button class="language-toggle" type="button" aria-label="Switch language">Hausa</button>
+            <button
+              class="language-toggle"
+              type="button"
+              aria-label="Switch language"
+            >
+              Hausa
+            </button>
             <a href="login.html" class="navbar-login">Log In</a>
             <a href="signup.html" class="navbar-signup">Sign Up</a>
           </div>
@@ -44,51 +67,151 @@
       </div>
     </header>
 
-    <!-- Logged-in navbar -->
-    <header class="navbar navbar-logged-in hidden">
-      <div class="navbar-container">
-        <a href="dashboard.html" class="navbar-brand" aria-label="Kaza-Care home">
-          <img src="assets/logo/logo.jpeg" alt="" class="navbar-logo" />
+    <div class="app-layout navbar-logged-in hidden">
+      <button
+        class="sidebar-overlay hidden"
+        type="button"
+        aria-label="Close navigation menu"
+        tabindex="-1"
+        data-sidebar-overlay
+      ></button>
+
+      <aside
+        class="app-sidebar"
+        id="app-sidebar"
+        aria-label="Application sidebar"
+      >
+        <a
+          href="dashboard.html"
+          class="navbar-brand sidebar-brand"
+          aria-label="Kaza-Care home"
+        >
+          <img src="assets/logo/logo.png" alt="" class="navbar-logo" />
           <span class="navbar-name">
             <span class="navbar-name-kaza">KAZA</span>
             <span class="navbar-name-care">CARE</span>
           </span>
         </a>
 
-        <button class="navbar-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navbar-menu-logged-in">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <nav class="navbar-menu" id="navbar-menu-logged-in" aria-label="Main navigation">
-          <ul class="navbar-links">
-            <li><a href="dashboard.html" class="navbar-link">Home</a></li>
-            <li><a href="map.html" class="navbar-link">Find a Vet</a></li>
-            <li><a href="records.html" class="navbar-link">Records</a></li>
+        <nav class="sidebar-navigation" aria-label="Main navigation">
+          <ul class="sidebar-links">
+            <li>
+              <a href="dashboard.html" class="sidebar-link">
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="map.html" class="sidebar-link">
+                <span>Find a Vet</span>
+              </a>
+            </li>
+            <li>
+              <a href="records.html" class="sidebar-link">
+                <span>Records</span>
+              </a>
+            </li>
+            <li>
+              <a href="vaccinations.html" class="sidebar-link">
+                <span>Vaccinations</span>
+              </a>
+            </li>
           </ul>
+        </nav>
 
-          <div class="navbar-actions">
-            <button class="notification-button" type="button" aria-label="Notifications">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
-                <path d="M10 21h4" />
-              </svg>
+        <div class="sidebar-account">
+          <div class="profile-menu hidden" id="profile-menu">
+            <a href="records.html" class="profile-menu-item">
+              Account / Profile
+            </a>
+
+            <button
+              class="profile-menu-item"
+              type="button"
+              data-language-toggle
+              aria-label="Switch language to Hausa"
+            >
+              Language: <span data-language-label>English</span>
             </button>
 
-            <button class="profile-button" type="button" aria-label="Open profile menu">
-              <span class="profile-avatar" aria-hidden="true">LU</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
+            <button
+              class="profile-menu-item"
+              type="button"
+              data-theme-toggle
+              aria-label="Switch to dark theme"
+            >
+              <span data-theme-label>Dark theme</span>
+            </button>
+
+            <button
+              class="profile-menu-item profile-menu-logout"
+              type="button"
+              data-logout
+            >
+              Log Out
             </button>
           </div>
-        </nav>
-      </div>
-    </header>
 
-    <main id="main-content">
-      <!-- Keep your existing About page content here. -->
-    </main>
+          <button
+            class="sidebar-profile profile-button"
+            type="button"
+            id="profile-menu-toggle"
+            aria-expanded="false"
+            aria-controls="profile-menu"
+            aria-label="Open account menu"
+          >
+            <span class="profile-avatar" aria-hidden="true">U</span>
+
+            <span class="sidebar-profile-details">
+              <span class="sidebar-profile-name">Salma</span>
+              <span class="sidebar-profile-role">Poultry Farmer</span>
+            </span>
+
+            <svg
+              class="profile-chevron"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+        </div>
+      </aside>
+
+      <div class="app-main">
+        <header class="app-topbar">
+          <button
+            class="sidebar-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="app-sidebar"
+            data-sidebar-toggle
+          >
+            ☰
+          </button>
+          <div class="app-topbar-spacer"></div>
+          <button
+            class="notification-button"
+            type="button"
+            aria-label="Notifications, no unread notifications"
+            data-notifications
+          >
+            ♧
+          </button>
+        </header>
+
+        <main class="app-content" id="main-content">
+          <!-- Keep your existing About page content here. -->
+        </main>
+      </div>
+    </div>
   </body>
 </html>
