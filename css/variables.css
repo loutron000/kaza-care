@@ -98,6 +98,12 @@
   --z-index-modal: 1000;
 
   --transition-slow: 350ms ease;
+
+  --z-sidebar: 20;
+  --z-overlay: 30;
+  --z-dropdown: 40;
+
+  --transition-layout: 250ms ease;
 }
 
 /* Dark Mode */
