@@ -82,8 +82,23 @@
   --transition-normal: 250ms ease;
 
   --focus-ring: 0 0 0 3px rgb(22 101 52 / 25%);
-}
 
+  --sidebar-width: 256px;
+  --sidebar-width-collapsed: 80px;
+  --sidebar-mobile-width: 280px;
+
+  --space-14: 3.5rem;
+  --font-size-5xl: 3rem;
+  --line-height-none: 1;
+
+  --content-max-width: 1440px;
+  --z-index-dropdown: 100;
+  --z-index-sticky: 200;
+  --z-index-overlay: 900;
+  --z-index-modal: 1000;
+
+  --transition-slow: 350ms ease;
+}
 
 /* Dark Mode */
 
@@ -124,7 +139,6 @@
 
   --focus-ring: 0 0 0 3px rgb(74 222 128 / 30%);
 }
-
 
 @media (max-width: 768px) {
   :root {
