@@ -3,104 +3,189 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Check poultry symptoms and receive preliminary flock health guidance with Kaza-Care."
+    />
     <title>Flock Health Assessment | KazaCare</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo.png" />
 
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/main.js" defer></script>
   </head>
 
-  <body>
-    <header class="navbar navbar-logged-in">
-      <div class="navbar-container">
+  <body class="app-page">
+    <div class="app-layout">
+      <button
+        class="sidebar-overlay hidden"
+        type="button"
+        aria-label="Close navigation menu"
+        tabindex="-1"
+        data-sidebar-overlay
+      ></button>
+
+      <aside
+        class="app-sidebar"
+        id="app-sidebar"
+        aria-label="Application sidebar"
+      >
         <a
           href="dashboard.html"
-          class="navbar-brand"
+          class="navbar-brand sidebar-brand"
           aria-label="Kaza-Care home"
         >
-          <img src="assets/logo/logo.jpeg" alt="" class="navbar-logo" />
+          <img src="assets/logo/logo.png" alt="" class="navbar-logo" />
           <span class="navbar-name">
             <span class="navbar-name-kaza">KAZA</span>
             <span class="navbar-name-care">CARE</span>
           </span>
         </a>
 
-        <button
-          class="navbar-toggle"
-          type="button"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="navbar-menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <nav class="navbar-menu" id="navbar-menu" aria-label="Main navigation">
-          <ul class="navbar-links">
+        <nav class="sidebar-navigation" aria-label="Main navigation">
+          <ul class="sidebar-links">
             <li>
-              <a href="dashboard.html" class="navbar-link">Home</a>
+              <a href="dashboard.html" class="sidebar-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m3 10 9-7 9 7" />
+                  <path d="M5 9v12h14V9" />
+                  <path d="M9 21v-7h6v7" />
+                </svg>
+                <span>Home</span>
+              </a>
             </li>
             <li>
-              <a href="map.html" class="navbar-link">Find a Vet</a>
+              <a href="map.html" class="sidebar-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+                  <circle cx="12" cy="10" r="2.5" />
+                </svg>
+                <span>Find a Vet</span>
+              </a>
             </li>
             <li>
-              <a href="records.html" class="navbar-link">Records</a>
+              <a href="records.html" class="sidebar-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 3h9l4 4v14H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
+                  <path d="M14 3v5h5M8 13h8M8 17h8" />
+                </svg>
+                <span>Records</span>
+              </a>
+            </li>
+            <li>
+              <a href="vaccinations.html" class="sidebar-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m14 4 6 6M16 2l6 6M4 20l3-7L17 3l4 4-10 10-7 3Z" />
+                  <path d="m7 13 4 4" />
+                </svg>
+                <span>Vaccinations</span>
+              </a>
             </li>
           </ul>
+        </nav>
 
-          <div class="navbar-actions">
+        <div class="sidebar-account">
+          <div class="profile-menu hidden" id="profile-menu">
+            <a href="records.html" class="profile-menu-item">
+              Account / Profile
+            </a>
+
             <button
-              class="notification-button"
+              class="profile-menu-item"
               type="button"
-              aria-label="Notifications"
+              data-language-toggle
+              aria-label="Switch language to Hausa"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
-                <path d="M10 21h4" />
-              </svg>
+              Language: <span data-language-label>English</span>
             </button>
 
             <button
-              class="profile-button"
+              class="profile-menu-item"
               type="button"
-              aria-label="Open profile menu"
+              data-theme-toggle
+              aria-label="Switch to dark theme"
             >
-              <span class="profile-avatar" aria-hidden="true">LU</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
+              <span data-theme-label>Dark theme</span>
+            </button>
+
+            <button
+              class="profile-menu-item profile-menu-logout"
+              type="button"
+              data-logout
+            >
+              Log Out
             </button>
           </div>
-        </nav>
-      </div>
-    </header>
 
-    <main id="main-content">
-      <!-- Assessment page content will go here. -->
-    </main>
+          <button
+            class="sidebar-profile profile-button"
+            type="button"
+            id="profile-menu-toggle"
+            aria-expanded="false"
+            aria-controls="profile-menu"
+            aria-label="Open account menu"
+          >
+            <span class="profile-avatar" aria-hidden="true">U</span>
+
+            <span class="sidebar-profile-details">
+              <span class="sidebar-profile-name">Salma</span>
+              <span class="sidebar-profile-role">Poultry Farmer</span>
+            </span>
+
+            <svg
+              class="profile-chevron"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+        </div>
+      </aside>
+
+      <div class="app-main">
+        <header class="app-topbar">
+          <button
+            class="sidebar-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="app-sidebar"
+            data-sidebar-toggle
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          <div class="app-topbar-spacer"></div>
+
+          <button
+            class="notification-button"
+            type="button"
+            aria-label="Notifications, no unread notifications"
+            data-notifications
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+              <path d="M10 21h4" />
+            </svg>
+            <span class="notification-indicator hidden" aria-hidden="true"></span>
+          </button>
+        </header>
+
+        <main class="app-content" id="main-content">
+          <!-- Assessment page content will go here. -->
+        </main>
+      </div>
+    </div>
   </body>
 </html>

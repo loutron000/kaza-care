@@ -152,3 +152,17 @@
     --navbar-height: 64px;
   }
 }
+
+:root {
+  --color-sidebar-bg: #166534;
+  --color-sidebar-text: #f0fdf4;
+  --color-sidebar-muted: #dcfce7;
+  --color-sidebar-active: #2f7d4a;
+}
+
+[data-theme="dark"] {
+  --color-sidebar-bg: #0f2418;
+  --color-sidebar-text: #f0f5f0;
+  --color-sidebar-muted: #d1e7d6;
+  --color-sidebar-active: #244b32;
+}
