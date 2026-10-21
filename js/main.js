@@ -11,6 +11,18 @@ loggedInNavbars.forEach((navbar) => {
   navbar.classList.toggle("hidden", !isLoggedIn);
 });
 
+document.body.classList.toggle("is-logged-in", isLoggedIn);document.body.classList.toggle("is-logged-in", isLoggedIn);
+
+const loggedOutFooters = document.querySelectorAll(".footer-logged-out");
+const loggedInFooters = document.querySelectorAll(".footer-logged-in");
+
+loggedOutFooters.forEach((footer) => {
+  footer.classList.toggle("hidden", isLoggedIn);
+});
+
+loggedInFooters.forEach((footer) => {
+  footer.classList.toggle("hidden", !isLoggedIn);
+});
 
 const navbarToggles = document.querySelectorAll(".navbar-toggle");
 
