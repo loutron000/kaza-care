@@ -348,3 +348,324 @@ document.addEventListener("DOMContentLoaded", () => {
   showStep(1);
   updateSymptomCount();
 });
+
+// Find A Vet
+document.addEventListener("DOMContentLoaded", () => {
+  const mapElement = document.querySelector("#vet-map");
+  const practitionerList = document.querySelector("#vet-practitioner-list");
+
+  if (!mapElement || !practitionerList) return;
+
+  const searchInput = document.querySelector("#vet-search");
+  const serviceFilter = document.querySelector("#vet-service-filter");
+  const sortSelect = document.querySelector("#vet-sort");
+  const resultsCount = document.querySelector("#vet-results-count");
+  const emptyState = document.querySelector("#vet-empty-state");
+
+  const practitioners = [
+    {
+      id: 1,
+      name: "Dr. Samuel Danjuma",
+      clinic: "Plateau Poultry Care",
+      area: "Rayfield, Jos",
+      lat: 9.873,
+      lng: 8.895,
+      distance: 4,
+      services: ["poultry", "vaccination", "farm-visit"],
+      description: "Poultry health and farm-visit services.",
+    },
+    {
+      id: 2,
+      name: "Dr. Amina Musa",
+      clinic: "Green Feather Veterinary Centre",
+      area: "Bukuru, Jos South",
+      lat: 9.812,
+      lng: 8.866,
+      distance: 8,
+      services: ["poultry", "diagnostics"],
+      description: "Poultry health and diagnostic services.",
+    },
+    {
+      id: 3,
+      name: "Dr. Peter Pam",
+      clinic: "Highland Animal Health",
+      area: "Farin Gada, Jos",
+      lat: 9.93,
+      lng: 8.9,
+      distance: 5,
+      services: ["vaccination", "diagnostics", "farm-visit"],
+      description: "Vaccination and farm-support services.",
+    },
+    {
+      id: 4,
+      name: "Dr. Ruth Gyang",
+      clinic: "Healthy Flock Clinic",
+      area: "Angwan Rukuba, Jos",
+      lat: 9.944,
+      lng: 8.887,
+      distance: 7,
+      services: ["poultry", "vaccination"],
+      description: "Poultry care and vaccination services.",
+    },
+    {
+      id: 5,
+      name: "Dr. David Emmanuel",
+      clinic: "FarmCare Veterinary Services",
+      area: "Vom, Jos South",
+      lat: 9.731,
+      lng: 8.79,
+      distance: 14,
+      services: ["poultry", "diagnostics", "farm-visit"],
+      description: "Diagnostics and farm-visit services.",
+    },
+  ];
+
+  const serviceNames = {
+    poultry: "Poultry health",
+    vaccination: "Vaccination",
+    diagnostics: "Diagnostics",
+    "farm-visit": "Farm visits",
+  };
+
+  let visiblePractitioners = [...practitioners];
+  const markersById = {};
+  let map = null;
+
+  if (typeof maplibregl !== "undefined") {
+    map = new maplibregl.Map({
+      container: "vet-map",
+      style: "https://tiles.openfreemap.org/styles/positron",
+      center: [8.8583, 9.8965],
+      zoom: 10.5,
+    });
+
+    map.addControl(new maplibregl.NavigationControl(), "top-right");
+
+    map.on("load", () => {
+      map.resize();
+    });
+
+    practitioners.forEach((practitioner) => {
+      const markerElement = document.createElement("button");
+      markerElement.type = "button";
+      markerElement.className = "vet-map-marker";
+      markerElement.setAttribute(
+        "aria-label",
+        `Show ${practitioner.name} on the map`,
+      );
+      markerElement.title = practitioner.name;
+
+      const popupContent = document.createElement("div");
+      const popupName = document.createElement("strong");
+      const popupClinic = document.createElement("p");
+      const popupArea = document.createElement("p");
+
+      popupName.textContent = practitioner.name;
+      popupClinic.textContent = practitioner.clinic;
+      popupArea.textContent = practitioner.area;
+
+      popupContent.append(popupName, popupClinic, popupArea);
+
+      const popup = new maplibregl.Popup({
+        offset: 18,
+        closeButton: true,
+      }).setDOMContent(popupContent);
+
+      const marker = new maplibregl.Marker({
+        element: markerElement,
+        anchor: "bottom",
+      })
+        .setLngLat([practitioner.lng, practitioner.lat])
+        .setPopup(popup)
+        .addTo(map);
+
+      markerElement.addEventListener("click", () => {
+        const card = practitionerList.querySelector(
+          `[data-practitioner-id="${practitioner.id}"]`,
+        );
+
+        if (card) {
+          card.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+          });
+
+          highlightCard(card);
+        }
+      });
+
+      markersById[practitioner.id] = marker;
+    });
+  } else {
+    mapElement.innerHTML = `
+      <p class="vet-map-fallback">
+        The map could not load. You can still search and browse
+        the practitioner listings.
+      </p>
+    `;
+  }
+
+  function highlightCard(card) {
+    practitionerList
+      .querySelectorAll(".vet-practitioner-card")
+      .forEach((item) => item.classList.remove("is-highlighted"));
+
+    card.classList.add("is-highlighted");
+
+    window.setTimeout(() => {
+      card.classList.remove("is-highlighted");
+    }, 2200);
+  }
+
+  function renderPractitioners() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    const selectedService = serviceFilter.value;
+    const sortBy = sortSelect.value;
+
+    visiblePractitioners = practitioners.filter((practitioner) => {
+      const searchableText = [
+        practitioner.name,
+        practitioner.clinic,
+        practitioner.area,
+        practitioner.description,
+        ...practitioner.services.map((service) => serviceNames[service]),
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      const matchesSearch = searchableText.includes(searchTerm);
+
+      const matchesService =
+        selectedService === "all" ||
+        practitioner.services.includes(selectedService);
+
+      return matchesSearch && matchesService;
+    });
+
+    if (sortBy === "name") {
+      visiblePractitioners.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === "distance") {
+      visiblePractitioners.sort((a, b) => a.distance - b.distance);
+    }
+
+    practitionerList.innerHTML = visiblePractitioners
+      .map((practitioner) => {
+        const serviceTags = practitioner.services
+          .map(
+            (service) =>
+              `<span class="vet-service-tag">${serviceNames[service]}</span>`,
+          )
+          .join("");
+
+        return `
+          <article
+            class="vet-practitioner-card"
+            data-practitioner-id="${practitioner.id}"
+          >
+            <div class="vet-practitioner-info">
+              <h3>${practitioner.name}</h3>
+              <p class="vet-clinic-name">${practitioner.clinic}</p>
+              <p class="vet-practitioner-location">
+                ${practitioner.area} · Approx. ${practitioner.distance} km
+              </p>
+              <p>${practitioner.description}</p>
+              <div class="vet-service-tags">${serviceTags}</div>
+            </div>
+
+            <div class="vet-practitioner-actions">
+              <button
+                type="button"
+                class="vet-primary-action"
+                data-action="contact"
+                data-id="${practitioner.id}"
+              >
+                Contact
+              </button>
+
+              <button
+                type="button"
+                data-action="request"
+                data-id="${practitioner.id}"
+              >
+                Request visit
+              </button>
+
+              <button
+                type="button"
+                data-action="locate"
+                data-id="${practitioner.id}"
+              >
+                Show on map
+              </button>
+            </div>
+          </article>
+        `;
+      })
+      .join("");
+
+    resultsCount.textContent =
+      `${visiblePractitioners.length} practitioner` +
+      `${visiblePractitioners.length === 1 ? "" : "s"} found`;
+
+    emptyState.hidden = visiblePractitioners.length > 0;
+
+    practitioners.forEach((practitioner) => {
+      const marker = markersById[practitioner.id];
+      if (!marker) return;
+
+      const isVisible = visiblePractitioners.some(
+        (item) => item.id === practitioner.id,
+      );
+
+      marker.getElement().style.display = isVisible ? "" : "none";
+    });
+  }
+
+  searchInput.addEventListener("input", renderPractitioners);
+  serviceFilter.addEventListener("change", renderPractitioners);
+  sortSelect.addEventListener("change", renderPractitioners);
+
+  practitionerList.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
+
+    const practitioner = practitioners.find(
+      (item) => item.id === Number(button.dataset.id),
+    );
+
+    if (!practitioner) return;
+
+    const action = button.dataset.action;
+
+    if (action === "contact") {
+      window.alert(
+        `Contact practitioner\n\n${practitioner.name}\n\n` +
+          "Verified contact details will be available when connected.",
+      );
+    }
+
+    if (action === "request") {
+      window.alert(
+        `Request a visit\n\n${practitioner.name}\n\n` +
+          "No request has been sent. Visit requests will be enabled " +
+          "when booking functionality is connected.",
+      );
+    }
+
+    if (action === "locate") {
+      if (map && markersById[practitioner.id]) {
+        map.flyTo({
+          center: [practitioner.lng, practitioner.lat],
+          zoom: 14,
+          essential: true,
+        });
+
+        markersById[practitioner.id].togglePopup();
+      } else {
+        window.alert("The map is currently unavailable.");
+      }
+    }
+  });
+
+  renderPractitioners();
+});

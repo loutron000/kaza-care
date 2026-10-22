@@ -12,7 +12,18 @@
 
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/style.css" />
+
+    <link
+      href="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/loutron.css" />
+
+    <script src="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.js"></script>
+
     <script src="js/main.js" defer></script>
+    <script src="js/loutron.js" defer></script>
   </head>
 
   <body class="app-page">
@@ -239,7 +250,110 @@
           </div>
         </header>
 
-        <main></main>
+        <main class="app-content vet-page">
+          <section class="vet-page-heading" aria-labelledby="vet-page-title">
+            <div>
+              <p class="vet-eyebrow">VETERINARY SUPPORT</p>
+              <h1 id="vet-page-title">Find a Veterinarian</h1>
+              <p>
+                Connect with veterinary professionals for your poultry around
+                Jos and Plateau State.
+              </p>
+            </div>
+          </section>
+
+          <section class="vet-hotline" aria-labelledby="vet-hotline-title">
+            <div>
+              <h2 id="vet-hotline-title">Need veterinary support?</h2>
+              <p>Call the KazaCare support line for assistance.</p>
+            </div>
+
+            <a class="vet-hotline-button" href="tel:+23452922273">
+              Call +23452922273
+            </a>
+          </section>
+
+          <section class="vet-search-section" aria-label="Search veterinarians">
+            <label for="vet-search">Search practitioners</label>
+            <input
+              id="vet-search"
+              type="search"
+              placeholder="Search by name, clinic or service"
+            />
+
+            <div class="vet-filter-controls">
+              <label for="vet-service-filter">Service</label>
+              <select id="vet-service-filter">
+                <option value="all">All services</option>
+                <option value="poultry">Poultry health</option>
+                <option value="vaccination">Vaccination</option>
+                <option value="diagnostics">Diagnostics</option>
+                <option value="farm-visit">Farm visits</option>
+              </select>
+
+              <label for="vet-sort">Sort by</label>
+              <select id="vet-sort">
+                <option value="default">Recommended order</option>
+                <option value="distance">Distance</option>
+                <option value="name">Name</option>
+              </select>
+            </div>
+          </section>
+
+          <section
+            class="vet-results-layout"
+            aria-label="Veterinary practitioners and map"
+          >
+            <div class="vet-results-panel">
+              <div class="vet-results-heading">
+                <h2>Practitioners near you</h2>
+                <p>Illustrative listings for the frontend demo.</p>
+              </div>
+
+              <p id="vet-results-count" aria-live="polite">
+                Loading practitioners…
+              </p>
+
+              <div
+                id="vet-practitioner-list"
+                class="vet-practitioner-list"
+              ></div>
+
+              <p id="vet-empty-state" hidden>
+                No practitioners match your search. Try changing your filters.
+              </p>
+            </div>
+
+            <div class="vet-map-column">
+              <div class="vet-map-heading">
+                <h2>Explore the map</h2>
+                <p>
+                  Markers represent illustrative demo locations, not verified
+                  clinics.
+                </p>
+              </div>
+
+              <div
+                id="vet-map"
+                class="vet-map"
+                role="region"
+                aria-label="Map of illustrative veterinary practitioner locations around Jos"
+              ></div>
+
+              <p class="vet-map-legend">
+                Map locations are examples for demonstration purposes.
+              </p>
+            </div>
+          </section>
+
+          <aside class="vet-biosecurity-note">
+            <h2>A reminder for your flock</h2>
+            <p>
+              Symptom guidance is not a confirmed diagnosis. Consult a qualified
+              veterinary professional before administering medication.
+            </p>
+          </aside>
+        </main>
 
         <footer class="site-footer">
           <div class="site-footer-container">
