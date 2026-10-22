@@ -1576,3 +1576,65 @@
 [data-theme="dark"] #vet-sort {
   color-scheme: dark;
 }
+
+
+.vet-demo-label {
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.vet-practitioner-card.is-highlighted {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.vet-map-fallback {
+  padding: 1.5rem;
+  color: var(--color-text);
+}
+
+.vet-service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+
+.vet-map-marker {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 3px solid #ffffff;
+  border-radius: 50% 50% 50% 0;
+  background: var(--color-primary);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
+  transform: rotate(-45deg);
+  cursor: pointer;
+}
+
+.vet-map-marker:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 4px;
+}
+
+.vet-map .maplibregl-popup-content {
+  color: var(--color-text);
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.vet-map .maplibregl-popup-content p {
+  margin: 5px 0 0;
+}
+
+.vet-map .maplibregl-ctrl-group {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.vet-map-fallback {
+  padding: 1.5rem;
+  color: var(--color-text);
+}
