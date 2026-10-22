@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/loutron.css" />
+
     <script src="js/main.js" defer></script>
   </head>
 
@@ -243,7 +245,7 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               aria-hidden="true"
-            > 
+            >
               <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
               <path d="M10 21h4" />
             </svg>
@@ -255,7 +257,284 @@
         </header>
 
         <main class="app-content" id="main-content">
-          <!-- Dashboard content will go here later. -->
+          <div class="dashboard">
+            <section
+              class="dashboard-welcome"
+              aria-labelledby="dashboard-title"
+            >
+              <div>
+                <p class="dashboard-eyebrow">YOUR FARM AT A GLANCE</p>
+                <h1 id="dashboard-greeting">Good evening, Salma 👋</h1>
+                <p class="dashboard-subtitle">
+                  Here's what's happening with your poultry farm today.
+                </p>
+              </div>
+            </section>
+
+            <section class="dashboard-actions" aria-label="Quick actions">
+              <a href="assessment.html" class="dashboard-action">
+                <span class="dashboard-action-icon" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M9 12h6M12 9v6" />
+                    <circle cx="12" cy="12" r="9" />
+                  </svg>
+                </span>
+                <span class="dashboard-action-copy">
+                  <strong>Check Symptoms</strong>
+                  <span>Record signs you've noticed in your flock.</span>
+                </span>
+                <span class="dashboard-action-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <a href="map.html" class="dashboard-action">
+                <span class="dashboard-action-icon" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+                    <circle cx="12" cy="10" r="2.5" />
+                  </svg>
+                </span>
+                <span class="dashboard-action-copy">
+                  <strong>Find a Vet</strong>
+                  <span>Explore veterinary support near your farm.</span>
+                </span>
+                <span class="dashboard-action-arrow" aria-hidden="true">↗</span>
+              </a>
+            </section>
+
+            <section
+              class="dashboard-section"
+              aria-labelledby="flock-health-title"
+            >
+              <div class="dashboard-section-heading">
+                <div>
+                  <h2 id="flock-health-title">Flock Health</h2>
+                  <p>A quick look at your recorded health activity.</p>
+                </div>
+                <a href="records.html" class="dashboard-text-link">
+                  View records <span aria-hidden="true">→</span>
+                </a>
+              </div>
+
+              <div class="flock-health-panel">
+                <div class="flock-health-summary">
+                  <span class="flock-health-icon" aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                  </span>
+                  <div>
+                    <h3>Your flock's health records</h3>
+                    <p>
+                      Keep track of checks, concerns and vaccination activity.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flock-health-metrics">
+                  <div class="flock-health-metric">
+                    <span class="flock-health-value">1</span>
+                    <span class="flock-health-label">Recorded concern</span>
+                  </div>
+                  <div class="flock-health-metric">
+                    <span class="flock-health-value">3 days ago</span>
+                    <span class="flock-health-label">Latest health check</span>
+                  </div>
+                  <div class="flock-health-metric">
+                    <span class="flock-health-value">1</span>
+                    <span class="flock-health-label">Upcoming vaccination</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section
+              class="dashboard-section"
+              aria-labelledby="farm-overview-title"
+            >
+              <div class="dashboard-section-heading">
+                <div>
+                  <h2 id="farm-overview-title">Farm Overview</h2>
+                  <p>Your flock and record summary.</p>
+                </div>
+                <a href="records.html" class="dashboard-text-link">
+                  Manage records <span aria-hidden="true">→</span>
+                </a>
+              </div>
+
+              <div class="farm-stats-grid">
+                <article class="farm-stat-card">
+                  <span class="farm-stat-label">Total flock</span>
+                  <strong class="farm-stat-value">120</strong>
+                  <span class="farm-stat-note">Birds</span>
+                </article>
+
+                <article class="farm-stat-card">
+                  <span class="farm-stat-label">Health records</span>
+                  <strong class="farm-stat-value">4</strong>
+                  <span class="farm-stat-note">Records saved</span>
+                </article>
+
+                <article class="farm-stat-card">
+                  <span class="farm-stat-label">Vaccination due</span>
+                  <strong class="farm-stat-value">1</strong>
+                  <span class="farm-stat-note">Upcoming reminder</span>
+                </article>
+
+                <article class="farm-stat-card">
+                  <span class="farm-stat-label">Follow-up</span>
+                  <strong class="farm-stat-value">1</strong>
+                  <span class="farm-stat-note">Concern to review</span>
+                </article>
+              </div>
+              <p class="dashboard-data-note">
+                Example farm figures shown for this account.
+              </p>
+            </section>
+
+            <div class="dashboard-bottom-grid">
+              <section
+                class="dashboard-section dashboard-panel"
+                aria-labelledby="recent-activity-title"
+              >
+                <div class="dashboard-section-heading">
+                  <div>
+                    <h2 id="recent-activity-title">Recent Activity</h2>
+                    <p>Your latest recorded updates.</p>
+                  </div>
+                  <a href="records.html" class="dashboard-text-link"
+                    >View all</a
+                  >
+                </div>
+
+                <ul class="dashboard-activity-list">
+                  <li class="dashboard-activity-item">
+                    <span
+                      class="activity-dot activity-dot-green"
+                      aria-hidden="true"
+                    ></span>
+                    <div class="dashboard-activity-copy">
+                      <strong>Health check recorded</strong>
+                      <p>A flock health check was added to your records.</p>
+                      <span class="dashboard-activity-time">3 days ago</span>
+                    </div>
+                  </li>
+
+                  <li class="dashboard-activity-item">
+                    <span
+                      class="activity-dot activity-dot-amber"
+                      aria-hidden="true"
+                    ></span>
+                    <div class="dashboard-activity-copy">
+                      <strong>Health concern recorded</strong>
+                      <p>
+                        A previously reported concern is available for review.
+                      </p>
+                      <span class="dashboard-activity-time">4 days ago</span>
+                    </div>
+                  </li>
+
+                  <li class="dashboard-activity-item">
+                    <span
+                      class="activity-dot activity-dot-green"
+                      aria-hidden="true"
+                    ></span>
+                    <div class="dashboard-activity-copy">
+                      <strong>Vaccination reminder added</strong>
+                      <p>
+                        Check your vaccination schedule for the upcoming dose.
+                      </p>
+                      <span class="dashboard-activity-time">5 days ago</span>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+
+              <div class="dashboard-side-panels">
+                <section
+                  class="dashboard-section attention-panel"
+                  aria-labelledby="attention-title"
+                >
+                  <div class="dashboard-section-heading">
+                    <h2 id="attention-title">Needs Your Attention</h2>
+                  </div>
+
+                  <div class="attention-item">
+                    <span class="attention-indicator" aria-hidden="true"></span>
+                    <div>
+                      <strong>Review a recorded concern</strong>
+                      <p>
+                        Check the notes and consider contacting a veterinarian
+                        if the concern persists or worsens.
+                      </p>
+                      <a href="records.html" class="dashboard-text-link">
+                        Review health records →
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="attention-item">
+                    <span
+                      class="attention-indicator attention-indicator-green"
+                      aria-hidden="true"
+                    ></span>
+                    <div>
+                      <strong>Check your vaccination schedule</strong>
+                      <p>
+                        Review the upcoming reminder and confirm the appropriate
+                        date.
+                      </p>
+                      <a href="vaccinations.html" class="dashboard-text-link">
+                        View vaccinations →
+                      </a>
+                    </div>
+                  </div>
+                </section>
+
+                <section
+                  class="dashboard-section biosecurity-panel"
+                  aria-labelledby="biosecurity-title"
+                >
+                  <span class="biosecurity-label">FARM CARE TIP</span>
+                  <h2 id="biosecurity-title">Small habits, healthier flocks</h2>
+                  <p>
+                    Clean and disinfect drinkers regularly, provide fresh water,
+                    and limit unnecessary visitors to poultry housing.
+                  </p>
+                </section>
+              </div>
+            </div>
+          </div>
         </main>
 
         <footer class="site-footer">
@@ -337,5 +616,7 @@
         </footer>
       </div>
     </div>
+
+    <script src="js/loutron.js"></script>
   </body>
 </html>
