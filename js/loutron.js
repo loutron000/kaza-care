@@ -669,3 +669,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderPractitioners();
 });
+
+/* Landing Page */
+const landingSymptomForm = document.querySelector(
+  "#landing-symptom-form"
+);
+
+const landingSymptomResult = document.querySelector(
+  "#landing-symptom-result"
+);
+
+if (landingSymptomForm && landingSymptomResult) {
+  landingSymptomForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const selectedSymptoms = landingSymptomForm.querySelectorAll(
+      'input[name="symptoms"]:checked'
+    );
+
+    if (selectedSymptoms.length === 0) {
+      return;
+    }
+
+    landingSymptomResult.classList.remove("hidden");
+    landingSymptomResult.focus();
+  });
+
+  landingSymptomForm.addEventListener("change", () => {
+    landingSymptomResult.classList.add("hidden");
+  });
+}
