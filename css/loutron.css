@@ -1465,3 +1465,114 @@
     padding: 15px;
   }
 }
+
+
+.vet-page {
+  color: var(--color-text);
+}
+
+.vet-page-heading h1,
+.vet-hotline h2,
+.vet-results-heading h2,
+.vet-map-heading h2,
+.vet-biosecurity-note h2,
+.vet-practitioner-card h3,
+.vet-search-section > label,
+.vet-filter-controls label {
+  color: var(--color-text);
+}
+
+.vet-eyebrow {
+  color: var(--color-primary);
+}
+
+.vet-page-heading p:last-child,
+.vet-hotline p,
+.vet-map-heading p,
+.vet-results-heading p,
+.vet-practitioner-card p,
+.vet-map-legend,
+#vet-results-count,
+#vet-empty-state,
+.vet-biosecurity-note p {
+  color: var(--color-text-muted);
+}
+
+.vet-hotline,
+.vet-practitioner-card,
+.vet-biosecurity-note {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.vet-biosecurity-note {
+  border-left-color: var(--color-secondary);
+}
+
+.vet-hotline-button,
+.vet-practitioner-actions .vet-primary-action {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.vet-hotline-button:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--color-text-inverse);
+}
+
+#vet-search,
+#vet-service-filter,
+#vet-sort {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+#vet-search::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+#vet-search:focus,
+#vet-service-filter:focus,
+#vet-sort:focus {
+  outline-color: var(--color-primary);
+}
+
+.vet-service-tag {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+
+.vet-map {
+  background-color: var(--color-surface-muted);
+  border-color: var(--color-border);
+}
+
+
+#vet-empty-state {
+  border-color: var(--color-border);
+}
+
+
+.vet-practitioner-actions a,
+.vet-practitioner-actions button {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.vet-practitioner-actions a:hover,
+.vet-practitioner-actions button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+[data-theme="dark"] #vet-search,
+[data-theme="dark"] #vet-service-filter,
+[data-theme="dark"] #vet-sort {
+  color-scheme: dark;
+}
