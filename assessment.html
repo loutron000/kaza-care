@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/loutron.css" />
     <script src="js/main.js" defer></script>
   </head>
 
@@ -252,7 +253,442 @@
         </header>
 
         <main class="app-content" id="main-content">
-          <!-- Assessment page content will go here. -->
+          <div class="assessment-page">
+            <div id="assessment-form-view">
+              <div class="assessment-header">
+                <a href="dashboard.html" class="assessment-back-link">
+                  &larr; Back to Dashboard
+                </a>
+
+                <div class="assessment-heading">
+                  <div>
+                    <h1>Symptom Checker</h1>
+                    <p>
+                      Report the signs you've observed to receive preliminary
+                      guidance for your flock.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <section
+                class="assessment-progress-card"
+                aria-labelledby="assessment-progress-title"
+              >
+                <div class="assessment-progress-heading">
+                  <h2 id="assessment-progress-title">
+                    Flock health assessment
+                  </h2>
+                  <span id="assessment-progress-label">Step 1 of 2</span>
+                </div>
+
+                <div
+                  class="assessment-stepper"
+                  aria-label="Assessment progress"
+                >
+                  <div
+                    class="assessment-step is-active"
+                    id="assessment-step-1"
+                    aria-current="step"
+                  >
+                    <span class="assessment-step-number">1</span>
+                    <span>Flock Profile</span>
+                  </div>
+
+                  <div class="assessment-step-line" aria-hidden="true"></div>
+
+                  <div class="assessment-step" id="assessment-step-2">
+                    <span class="assessment-step-number">2</span>
+                    <span>Observed Symptoms</span>
+                  </div>
+                </div>
+              </section>
+
+              <div id="assessment-step-profile">
+                <section
+                  class="assessment-batch-card"
+                  aria-labelledby="batch-card-title"
+                >
+                  <div class="assessment-batch-heading">
+                    <div>
+                      <span class="assessment-eyebrow">CURRENT FLOCK</span>
+                      <h2 id="batch-card-title">Batch KC-001</h2>
+                    </div>
+
+                    <span class="assessment-status">
+                      <span aria-hidden="true"></span>
+                      Active monitoring
+                    </span>
+                  </div>
+
+                  <div class="assessment-batch-details">
+                    <div class="assessment-batch-detail">
+                      <span>Farm name</span>
+                      <strong>Greenfield Poultry Farm</strong>
+                    </div>
+
+                    <div class="assessment-batch-detail">
+                      <span>Flock size</span>
+                      <strong>120 birds</strong>
+                    </div>
+
+                    <div class="assessment-batch-detail">
+                      <span>Batch ID</span>
+                      <strong>KC-001</strong>
+                    </div>
+                  </div>
+                </section>
+
+                <section
+                  class="assessment-section"
+                  aria-labelledby="profile-title"
+                >
+                  <div class="assessment-section-heading">
+                    <div>
+                      <span class="assessment-eyebrow">STEP 1</span>
+                      <h2 id="profile-title">Flock Profile</h2>
+                      <p>
+                        Tell us how many birds are showing signs of illness.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="assessment-field">
+                    <label for="affected-birds">Affected birds</label>
+                    <input
+                      type="number"
+                      id="affected-birds"
+                      name="affectedBirds"
+                      min="1"
+                      max="120"
+                      placeholder="e.g. 8"
+                      required
+                      aria-describedby="affected-birds-help"
+                    />
+                    <small id="affected-birds-help">
+                      Enter the number of birds showing symptoms, not the whole
+                      flock.
+                    </small>
+                  </div>
+                </section>
+              </div>
+
+              <div id="assessment-step-symptoms" class="hidden">
+                <section
+                  class="assessment-section"
+                  aria-labelledby="symptoms-title"
+                >
+                  <div class="assessment-section-heading">
+                    <div>
+                      <span class="assessment-eyebrow">STEP 2</span>
+                      <h2 id="symptoms-title">What signs have you noticed?</h2>
+                      <p>
+                        Select all symptoms you have observed in your flock.
+                      </p>
+                    </div>
+
+                    <span
+                      class="symptom-count"
+                      id="symptom-count"
+                      aria-live="polite"
+                    >
+                      0 selected
+                    </span>
+                  </div>
+
+                  <div class="symptom-grid">
+                    <label class="symptom-option">
+                      <input
+                        type="checkbox"
+                        name="symptoms"
+                        value="loss-of-appetite"
+                      />
+                      <span class="symptom-option-content">
+                        <strong>Loss of appetite</strong>
+                        <span>
+                          Birds are eating less than usual or refusing feed.
+                        </span>
+                      </span>
+                    </label>
+
+                    <label class="symptom-option">
+                      <input
+                        type="checkbox"
+                        name="symptoms"
+                        value="respiratory-signs"
+                      />
+                      <span class="symptom-option-content">
+                        <strong>Coughing, sneezing or snicking</strong>
+                        <span>
+                          Unusual breathing sounds, sneezing or nasal
+                          irritation.
+                        </span>
+                      </span>
+                    </label>
+
+                    <label class="symptom-option">
+                      <input
+                        type="checkbox"
+                        name="symptoms"
+                        value="abnormal-droppings"
+                      />
+                      <span class="symptom-option-content">
+                        <strong>Diarrhea or abnormal droppings</strong>
+                        <span>
+                          Loose, unusually coloured or otherwise changed
+                          droppings.
+                        </span>
+                      </span>
+                    </label>
+
+                    <label class="symptom-option">
+                      <input
+                        type="checkbox"
+                        name="symptoms"
+                        value="eye-or-facial-swelling"
+                      />
+                      <span class="symptom-option-content">
+                        <strong>Watery or swollen eyes</strong>
+                        <span>
+                          Eye discharge, facial swelling or puffiness around the
+                          eyes.
+                        </span>
+                      </span>
+                    </label>
+
+                    <label class="symptom-option">
+                      <input
+                        type="checkbox"
+                        name="symptoms"
+                        value="reduced-egg-production"
+                      />
+                      <span class="symptom-option-content">
+                        <strong>Sudden drop in egg production</strong>
+                        <span>
+                          Fewer eggs than expected for your laying flock.
+                        </span>
+                      </span>
+                    </label>
+
+                    <label class="symptom-option">
+                      <input type="checkbox" name="symptoms" value="lethargy" />
+                      <span class="symptom-option-content">
+                        <strong>Lethargy or huddling</strong>
+                        <span>
+                          Birds appear weak, inactive, droopy or unusually
+                          clustered.
+                        </span>
+                      </span>
+                    </label>
+
+                    <label class="symptom-option">
+                      <input
+                        type="checkbox"
+                        name="symptoms"
+                        value="feather-or-shivering-changes"
+                      />
+                      <span class="symptom-option-content">
+                        <strong>Ruffled feathers or shivering</strong>
+                        <span>
+                          Persistently fluffed feathers or unusual trembling.
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                </section>
+
+                <section
+                  class="assessment-section"
+                  aria-labelledby="flock-context-title"
+                >
+                  <div class="assessment-section-heading">
+                    <div>
+                      <span class="assessment-eyebrow">FLOCK DETAILS</span>
+                      <h2 id="flock-context-title">
+                        Tell us more about the affected birds
+                      </h2>
+                      <p>
+                        Add details that may help put the observed signs into
+                        context.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="assessment-form-grid">
+                    <div class="assessment-field">
+                      <label for="symptom-duration">
+                        When did the signs begin?
+                      </label>
+                      <select
+                        id="symptom-duration"
+                        name="symptomDuration"
+                        required
+                      >
+                        <option value="">Select duration</option>
+                        <option value="today">Today</option>
+                        <option value="1-2-days">1–2 days ago</option>
+                        <option value="3-7-days">3–7 days ago</option>
+                        <option value="over-a-week">
+                          More than a week ago
+                        </option>
+                        <option value="unknown">Not sure</option>
+                      </select>
+                    </div>
+
+                    <div class="assessment-field">
+                      <label for="housing-unit">Housing unit</label>
+                      <select id="housing-unit" name="housingUnit" required>
+                        <option value="">Select housing unit</option>
+                        <option value="main-house">Main poultry house</option>
+                        <option value="brooder">Brooder</option>
+                        <option value="layer-house">Layer house</option>
+                        <option value="free-range">Free-range area</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="assessment-field assessment-notes-field">
+                    <label for="field-observations">
+                      Additional observations
+                      <span class="assessment-optional">(Optional)</span>
+                    </label>
+
+                    <textarea
+                      id="field-observations"
+                      name="fieldObservations"
+                      rows="4"
+                      maxlength="1000"
+                      placeholder="Describe changes in feeding, drinking, droppings, behaviour or egg production..."
+                    ></textarea>
+
+                    <small>
+                      Include useful details such as recent changes in feed,
+                      water or housing.
+                    </small>
+                  </div>
+
+                  <div class="assessment-tools">
+                    <button
+                      type="button"
+                      class="assessment-tool-button"
+                      id="voice-observations"
+                    >
+                      <span aria-hidden="true">🎙️</span>
+                      Add voice observations
+                      <span class="assessment-tool-tag">Coming soon</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="assessment-tool-button"
+                      id="scan-bird"
+                    >
+                      <span aria-hidden="true">📷</span>
+                      Scan a bird
+                      <span class="assessment-tool-tag">Coming soon</span>
+                    </button>
+                  </div>
+                </section>
+              </div>
+
+              <div class="assessment-actions">
+                <button
+                  type="button"
+                  class="assessment-reset-button"
+                  id="reset-assessment"
+                >
+                  Reset form
+                </button>
+
+                <button
+                  type="button"
+                  class="assessment-back-link hidden"
+                  id="back-to-profile"
+                >
+                  &larr; Back
+                </button>
+
+                <button
+                  type="button"
+                  class="assessment-submit-button"
+                  id="continue-assessment"
+                >
+                  Continue
+                  <span aria-hidden="true">&rarr;</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="assessment-submit-button hidden"
+                  id="generate-assessment"
+                >
+                  Generate Assessment
+                  <span aria-hidden="true">&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <section
+              class="assessment-results hidden"
+              id="assessment-results"
+              aria-labelledby="assessment-results-title"
+              aria-live="polite"
+              tabindex="-1"
+            >
+              <button
+                type="button"
+                class="assessment-back-link"
+                id="back-to-assessment"
+              >
+                &larr; Back to Assessment
+              </button>
+
+              <div class="assessment-results-header">
+                <span class="assessment-eyebrow">ASSESSMENT SUMMARY</span>
+                <h2 id="assessment-results-title">Flock health overview</h2>
+                <p id="assessment-results-intro">
+                  Your preliminary guidance will appear here after you submit
+                  the form.
+                </p>
+              </div>
+
+              <div id="assessment-summary"></div>
+
+              <div class="assessment-guidance">
+                <h3>Recommended next steps</h3>
+                <ul id="assessment-guidance-list"></ul>
+              </div>
+
+              <p class="assessment-disclaimer">
+                This assessment provides preliminary guidance only and is not a
+                veterinary diagnosis. If birds are seriously ill, deaths occur,
+                or symptoms spread rapidly, contact a qualified veterinarian
+                promptly.
+              </p>
+
+              <section
+                class="assessment-vets"
+                id="assessment-vets"
+                aria-labelledby="assessment-vets-title"
+              >
+                <div>
+                  <span class="assessment-eyebrow">VETERINARY SUPPORT</span>
+                  <h3 id="assessment-vets-title">Need help from a vet?</h3>
+                  <p>
+                    Explore veterinary support options if you need help
+                    assessing your flock.
+                  </p>
+                </div>
+
+                <div class="assessment-vet-grid" id="assessment-vet-list"></div>
+
+                <a href="map.html" class="assessment-vet-link">
+                  Explore vet locations <span aria-hidden="true">&rarr;</span>
+                </a>
+              </section>
+            </section>
+          </div>
         </main>
 
         <footer class="site-footer">
@@ -334,5 +770,7 @@
         </footer>
       </div>
     </div>
+
+    <script src="js/loutron.js" defer></script>
   </body>
 </html>
