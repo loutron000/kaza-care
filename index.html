@@ -14,12 +14,15 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <script src="js/main.js" defer></script>
+
+    <link rel="stylesheet" href="css/loutron.css" />
+    <script src="js/loutron.js" defer></script>
   </head>
   <body>
     <header class="navbar navbar-logged-out">
       <div class="navbar-container">
         <a href="index.html" class="navbar-brand" aria-label="Kaza-Care home">
-          <img src="assets/logo/logo.jpeg" alt="" class="navbar-logo" />
+          <img src="assets/logo/logo.png" alt="" class="navbar-logo" />
           <span class="navbar-name">
             <span class="navbar-name-kaza">KAZA</span>
             <span class="navbar-name-care">CARE</span>
@@ -67,7 +70,63 @@
     </header>
 
     <main id="main-content">
-      <!-- Landing page content will go here later. -->
+      <section class="landing-hero" aria-labelledby="hero-title">
+        <div class="landing-container landing-hero-grid">
+          <div class="landing-hero-content">
+            <p class="landing-eyebrow">
+              Poultry Health &amp; Veterinary Support
+            </p>
+
+            <h1 id="hero-title">
+              Healthier Flocks.
+              <span>Stronger Farms.</span>
+            </h1>
+
+            <p class="landing-hero-description">
+              Recognise potential health concerns early, keep flock health
+              records organised, and explore veterinary support — all in one
+              place.
+            </p>
+
+            <div class="landing-hero-actions">
+              <a
+                href="signup.html"
+                class="landing-button landing-button-primary"
+              >
+                Get Started
+              </a>
+
+              <a
+                href="about.html"
+                class="landing-button landing-button-secondary"
+              >
+                Learn More
+              </a>
+            </div>
+
+            <p class="landing-hero-note">
+              Practical digital tools for better poultry-health management.
+            </p>
+          </div>
+
+          <div class="landing-hero-visual">
+            <img
+              src="assets/images/hero.jpg"
+              alt="Chickens in a poultry farm"
+              class="landing-hero-image"
+            />
+            <div class="landing-image-caption">
+              <span class="landing-image-indicator" aria-hidden="true"></span>
+              <div>
+                <p class="landing-image-title">Care starts with attention.</p>
+                <p class="landing-image-description">
+                  Notice symptoms. Keep records. Seek support.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
