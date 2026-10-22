@@ -10,7 +10,10 @@
 
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/loutron.css" />
+
     <script src="js/main.js" defer></script>
+    <script src="js/loutron.js" defer></script>
   </head>
 
   <body class="app-page">
@@ -250,8 +253,191 @@
           </div>
         </header>
 
-        <main>
-          <!--content-->
+        <main class="vaccinations-page">
+          <section class="vaccinations-header">
+            <div>
+              <p class="dashboard-eyebrow">FLOCK MANAGEMENT</p>
+              <h1>Vaccinations</h1>
+              <p class="vaccinations-intro">
+                Keep track of your flock's vaccination schedule and treatment
+                history.
+              </p>
+            </div>
+
+            <button
+              class="landing-button"
+              type="button"
+              id="open-vaccination-form"
+            >
+              + Record vaccination
+            </button>
+          </section>
+
+          <section class="vaccination-stats" aria-label="Vaccination overview">
+            <article class="vaccination-stat">
+              <span class="vaccination-stat-label">Scheduled</span>
+              <strong id="vaccination-total">0</strong>
+              <span class="vaccination-stat-note">All vaccination entries</span>
+            </article>
+
+            <article class="vaccination-stat">
+              <span class="vaccination-stat-label">Upcoming</span>
+              <strong id="vaccination-upcoming">0</strong>
+              <span class="vaccination-stat-note"
+                >Still to be administered</span
+              >
+            </article>
+
+            <article class="vaccination-stat">
+              <span class="vaccination-stat-label">Completed</span>
+              <strong id="vaccination-completed">0</strong>
+              <span class="vaccination-stat-note"
+                >Recorded as administered</span
+              >
+            </article>
+
+            <article class="vaccination-stat">
+              <span class="vaccination-stat-label">Overdue</span>
+              <strong id="vaccination-overdue">0</strong>
+              <span class="vaccination-stat-note">Past the scheduled date</span>
+            </article>
+          </section>
+
+          <section class="vaccination-panel" id="vaccination-form-panel" hidden>
+            <div class="vaccination-panel-heading">
+              <div>
+                <h2 id="vaccination-form-heading">Record vaccination</h2>
+                <p>
+                  Add a scheduled dose or record a vaccination already
+                  administered.
+                </p>
+              </div>
+              <button
+                type="button"
+                class="vaccination-close"
+                id="close-vaccination-form"
+                aria-label="Close vaccination form"
+              >
+                ×
+              </button>
+            </div>
+
+            <form id="vaccination-form">
+              <div class="vaccination-form-grid">
+                <label class="vaccination-field">
+                  Vaccine name
+                  <input
+                    name="vaccine"
+                    required
+                    maxlength="100"
+                    placeholder="e.g. Newcastle disease vaccine"
+                  />
+                </label>
+
+                <label class="vaccination-field">
+                  Flock / batch
+                  <input
+                    name="flock"
+                    required
+                    maxlength="100"
+                    placeholder="e.g. Layer flock A"
+                  />
+                </label>
+
+                <label class="vaccination-field">
+                  Scheduled / administration date
+                  <input name="date" type="date" required />
+                </label>
+
+                <label class="vaccination-field">
+                  Status
+                  <select name="status" required>
+                    <option value="upcoming">Scheduled</option>
+                    <option value="completed">Administered</option>
+                  </select>
+                </label>
+
+                <label class="vaccination-field">
+                  Next due date (optional)
+                  <input name="nextDue" type="date" />
+                </label>
+
+                <label class="vaccination-field">
+                  Notes (optional)
+                  <input
+                    name="notes"
+                    maxlength="250"
+                    placeholder="Dose, batch number, or other notes"
+                  />
+                </label>
+              </div>
+
+              <p
+                class="vaccination-form-error"
+                id="vaccination-form-error"
+                role="alert"
+                hidden
+              ></p>
+
+              <div class="vaccination-form-actions">
+                <button
+                  type="button"
+                  class="vaccination-secondary-button"
+                  id="cancel-vaccination-form"
+                >
+                  Cancel
+                </button>
+                <button type="submit" class="landing-button">
+                  Save vaccination
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <section class="vaccination-panel">
+            <div class="vaccination-list-heading">
+              <div>
+                <h2>Vaccination schedule</h2>
+                <p>
+                  Review planned doses and vaccinations recorded for your flock.
+                </p>
+              </div>
+
+              <label class="vaccination-filter">
+                <span class="visually-hidden"
+                  >Filter vaccinations by status</span
+                >
+                <select id="vaccination-status-filter">
+                  <option value="all">All vaccinations</option>
+                  <option value="upcoming">Upcoming</option>
+                  <option value="completed">Completed</option>
+                  <option value="overdue">Overdue</option>
+                </select>
+              </label>
+            </div>
+
+            <div
+              class="vaccination-list"
+              id="vaccination-list"
+              aria-live="polite"
+            ></div>
+
+            <div class="vaccination-empty" id="vaccination-empty" hidden>
+              <h3>No vaccinations found</h3>
+              <p>Try another filter or record a vaccination to get started.</p>
+            </div>
+          </section>
+
+          <aside class="vaccination-guidance">
+            <div>
+              <h2>Keep your vaccination records up to date</h2>
+              <p>
+                Vaccination timing depends on bird age, flock type, local
+                disease risks, and the vaccine used. Confirm the appropriate
+                schedule with a qualified poultry veterinarian.
+              </p>
+            </div>
+          </aside>
         </main>
 
         <footer class="site-footer">
