@@ -699,3 +699,290 @@ if (landingSymptomForm && landingSymptomResult) {
     landingSymptomResult.classList.add("hidden");
   });
 }
+
+// Records Page
+const recordsList = document.querySelector("#records-list");
+
+if (recordsList) {
+  const recordsForm = document.querySelector("#records-form");
+  const recordsFormPanel = document.querySelector("#records-form-panel");
+  const recordsAddToggle = document.querySelector("#records-add-toggle");
+  const recordsFormClose = document.querySelector("#records-form-close");
+  const recordsCancel = document.querySelector("#records-cancel");
+  const recordsFormMessage = document.querySelector("#records-form-message");
+  const recordsSearchInput = document.querySelector("#records-search-input");
+  const recordsTypeFilter = document.querySelector("#records-type-filter");
+  const recordsEmpty = document.querySelector("#records-empty");
+  const recordsReset = document.querySelector("#records-reset");
+  const recordsVisibleCount = document.querySelector("#records-visible-count");
+
+  const recordsTotal = document.querySelector("#records-total");
+  const recordsChecks = document.querySelector("#records-checks");
+  const recordsConcerns = document.querySelector("#records-concerns");
+
+  const today = new Date();
+  const todayString = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0"),
+    String(today.getDate()).padStart(2, "0"),
+  ].join("-");
+
+  let healthRecords = [
+    {
+      id: 1,
+      title: "Morning flock health check",
+      type: "Health Check",
+      date: "2026-10-19",
+      flock: "Main layer flock",
+      observation:
+        "General activity and feed intake were observed during the morning check.",
+      action: "Continue routine observation and ensure clean water is available.",
+    },
+    {
+      id: 2,
+      title: "Reduced appetite observed",
+      type: "Health Concern",
+      date: "2026-10-18",
+      flock: "Main layer flock",
+      observation:
+        "Some birds appeared less interested in feed than usual.",
+      action:
+        "Observe affected birds closely and seek veterinary advice if the concern persists or worsens.",
+    },
+    {
+      id: 3,
+      title: "Drinker cleaning",
+      type: "General Observation",
+      date: "2026-10-17",
+      flock: "Main layer flock",
+      observation:
+        "Routine cleaning of drinking equipment was recorded.",
+      action: "Refilled drinkers with clean water.",
+    },
+    {
+      id: 4,
+      title: "Follow-up observation",
+      type: "Health Check",
+      date: "2026-10-16",
+      flock: "Main layer flock",
+      observation:
+        "A follow-up observation was recorded after an earlier health concern.",
+      action: "Continue monitoring and contact a poultry veterinarian if signs worsen.",
+    },
+  ];
+
+  function formatRecordDate(dateString) {
+    const date = new Date(`${dateString}T12:00:00`);
+
+    if (Number.isNaN(date.getTime())) {
+      return dateString;
+    }
+
+    return new Intl.DateTimeFormat("en-NG", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }).format(date);
+  }
+
+  function createTextElement(tagName, className, text) {
+    const element = document.createElement(tagName);
+    element.className = className;
+    element.textContent = text;
+    return element;
+  }
+
+  function createRecordCard(record) {
+    const card = document.createElement("article");
+    card.className = "records-item";
+
+    const top = document.createElement("div");
+    top.className = "records-item-top";
+
+    const headingGroup = document.createElement("div");
+    const title = createTextElement("h3", "", record.title);
+    const meta = createTextElement(
+      "div",
+      "records-item-meta",
+      `${formatRecordDate(record.date)} · ${record.flock}`
+    );
+
+    headingGroup.append(title, meta);
+
+    const typeBadge = createTextElement(
+      "span",
+      "records-type-badge",
+      record.type
+    );
+    typeBadge.dataset.type = record.type;
+
+    top.append(headingGroup, typeBadge);
+    card.append(top);
+
+    card.append(
+      createTextElement(
+        "p",
+        "records-item-observation",
+        record.observation
+      )
+    );
+
+    if (record.action) {
+      const action = document.createElement("p");
+      action.className = "records-item-action";
+
+      const label = document.createElement("strong");
+      label.textContent = "Action taken: ";
+
+      action.append(label, document.createTextNode(record.action));
+      card.append(action);
+    }
+
+    return card;
+  }
+
+  function updateSummary() {
+    recordsTotal.textContent = healthRecords.length;
+
+    recordsChecks.textContent = healthRecords.filter(
+      (record) => record.type === "Health Check"
+    ).length;
+
+    recordsConcerns.textContent = healthRecords.filter(
+      (record) => record.type === "Health Concern"
+    ).length;
+  }
+
+  function renderRecords() {
+    const searchTerm = recordsSearchInput.value.trim().toLowerCase();
+    const selectedType = recordsTypeFilter.value;
+
+    const filteredRecords = healthRecords
+      .filter((record) => {
+        const matchesType =
+          selectedType === "all" || record.type === selectedType;
+
+        const searchableText = [
+          record.title,
+          record.type,
+          record.date,
+          record.flock,
+          record.observation,
+          record.action,
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return matchesType && searchableText.includes(searchTerm);
+      })
+      .sort((a, b) => b.date.localeCompare(a.date));
+
+    recordsList.replaceChildren(
+      ...filteredRecords.map(createRecordCard)
+    );
+
+    recordsEmpty.classList.toggle(
+      "hidden",
+      filteredRecords.length !== 0
+    );
+
+    recordsVisibleCount.textContent =
+      `${filteredRecords.length} ` +
+      `${filteredRecords.length === 1 ? "record" : "records"}`;
+
+    updateSummary();
+  }
+
+  function openRecordsForm() {
+    recordsFormPanel.classList.remove("hidden");
+    recordsAddToggle.setAttribute("aria-expanded", "true");
+    recordsFormMessage.textContent = "";
+
+    const dateInput = recordsForm.elements.date;
+    dateInput.value = todayString;
+
+    document.querySelector("#record-title").focus();
+  }
+
+  function closeRecordsForm() {
+    recordsFormPanel.classList.add("hidden");
+    recordsAddToggle.setAttribute("aria-expanded", "false");
+    recordsFormMessage.textContent = "";
+    recordsAddToggle.focus();
+  }
+
+  recordsAddToggle.addEventListener("click", () => {
+    const isOpen =
+      recordsAddToggle.getAttribute("aria-expanded") === "true";
+
+    if (isOpen) {
+      closeRecordsForm();
+    } else {
+      openRecordsForm();
+    }
+  });
+
+  recordsFormClose.addEventListener("click", closeRecordsForm);
+  recordsCancel.addEventListener("click", closeRecordsForm);
+
+  recordsSearchInput.addEventListener("input", renderRecords);
+  recordsTypeFilter.addEventListener("change", renderRecords);
+
+  recordsReset.addEventListener("click", () => {
+    recordsSearchInput.value = "";
+    recordsTypeFilter.value = "all";
+    renderRecords();
+    recordsSearchInput.focus();
+  });
+
+  recordsForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(recordsForm);
+    const date = String(formData.get("date") || "");
+    const title = String(formData.get("title") || "").trim();
+    const flock = String(formData.get("flock") || "").trim();
+    const observation = String(
+      formData.get("observation") || ""
+    ).trim();
+
+    if (!title || !flock || !observation || !date) {
+      recordsFormMessage.textContent =
+        "Please complete all required fields.";
+      return;
+    }
+
+    if (date > todayString) {
+      recordsFormMessage.textContent =
+        "The observation date cannot be in the future.";
+      return;
+    }
+
+    const newRecord = {
+      id: Date.now(),
+      title,
+      type: String(formData.get("type")),
+      date,
+      flock,
+      observation,
+      action: String(formData.get("action") || "").trim(),
+    };
+
+    healthRecords.push(newRecord);
+
+    recordsForm.reset();
+    recordsFormMessage.textContent = "";
+    recordsSearchInput.value = "";
+    recordsTypeFilter.value = "all";
+
+    renderRecords();
+    closeRecordsForm();
+
+    recordsList.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+
+  renderRecords();
+}
