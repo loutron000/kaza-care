@@ -11,7 +11,7 @@ loggedInNavbars.forEach((navbar) => {
   navbar.classList.toggle("hidden", !isLoggedIn);
 });
 
-document.body.classList.toggle("is-logged-in", isLoggedIn);document.body.classList.toggle("is-logged-in", isLoggedIn);
+document.body.classList.toggle("is-logged-in", isLoggedIn);
 
 const loggedOutFooters = document.querySelectorAll(".footer-logged-out");
 const loggedInFooters = document.querySelectorAll(".footer-logged-in");
@@ -123,14 +123,25 @@ const initialTheme = savedTheme === "dark" ? "dark" : "light";
 
 document.documentElement.dataset.theme = initialTheme;
 
-function updateThemeLabel() {
-  if (!themeLabel) return;
 
-  themeLabel.textContent =
-    document.documentElement.dataset.theme === "dark"
-      ? "Light theme"
-      : "Dark theme";
+function updateThemeLabel() {
+  const isDark =
+    document.documentElement.dataset.theme === "dark";
+
+  if (themeLabel) {
+    themeLabel.textContent = isDark ? "Light theme" : "Dark theme";
+  }
+
+  if (themeToggle) {
+    themeToggle.setAttribute(
+      "aria-label",
+      isDark ? "Switch to light theme" : "Switch to dark theme"
+    );
+
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+  }
 }
+
 
 updateThemeLabel();
 
