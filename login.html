@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#166534" />
+    <title>Log In | KazaCare</title>
+    <link rel="icon" type="image/png" href="assets/logo/logo.png" />
+
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+
+    <script src="js/auth.js" defer></script>
+  </head>
+
+  <body class="auth-page" data-initial-view="login">
+    <main class="auth-main">
+      <div class="auth-brand">
+        <img
+          src="assets/logo/logo.png"
+          alt="KazaCare logo"
+          class="auth-brand__logo"
+        />
+
+        <a
+          href="index.html"
+          class="auth-brand__name"
+          aria-label="KazaCare home"
+        >
+          <span>KAZA</span><span>CARE</span>
+        </a>
+
+        <p class="auth-brand__tagline">Healthier Flocks. Stronger Futures.</p>
+      </div>
+
+      <section class="auth-card" aria-labelledby="auth-heading">
+        <header class="auth-card-header">
+          <h1 id="auth-heading">Welcome back</h1>
+          <p id="auth-intro">
+            Log in to check on your flock and continue where you left off.
+          </p>
+        </header>
+
+        <div class="auth-tabs" role="tablist" aria-label="Authentication">
+          <button
+            class="auth-tab is-active"
+            id="login-tab"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="login-panel"
+            data-auth-tab="login"
+          >
+            Log In
+          </button>
+
+          <button
+            class="auth-tab"
+            id="signup-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="signup-panel"
+            data-auth-tab="signup"
+            tabindex="-1"
+          >
+            Sign Up
+          </button>
+        </div>
+
+        <div
+          class="auth-panel"
+          id="login-panel"
+          role="tabpanel"
+          aria-labelledby="login-tab"
+          data-auth-panel="login"
+        >
+          <form id="login-form" class="auth-form" novalidate>
+            <div class="auth-field">
+              <label for="login-email">Email address</label>
+              <input
+                type="email"
+                id="login-email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+                aria-describedby="login-email-error"
+              />
+              <p class="auth-field-error" id="login-email-error" hidden></p>
+            </div>
+
+            <div class="auth-field">
+              <div class="auth-label-row">
+                <label for="login-password">Password</label>
+                <a href="#" class="auth-text-link" data-forgot-password>
+                  Forgot password?
+                </a>
+              </div>
+
+              <div class="auth-password-wrap">
+                <input
+                  type="password"
+                  id="login-password"
+                  name="password"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                  required
+                  aria-describedby="login-password-error"
+                />
+
+                <button
+                  type="button"
+                  class="auth-password-toggle"
+                  data-password-toggle="login-password"
+                  aria-label="Show password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+
+              <p class="auth-field-error" id="login-password-error" hidden></p>
+            </div>
+
+            <p
+              class="auth-form-message"
+              id="login-message"
+              role="status"
+              aria-live="polite"
+              hidden
+            ></p>
+
+            <button type="submit" class="auth-submit">Log In</button>
+          </form>
+
+          <p class="auth-switch-prompt">
+            New to KazaCare?
+            <button type="button" data-switch-view="signup">
+              Create an account
+            </button>
+          </p>
+        </div>
+
+        <div
+          class="auth-panel"
+          id="signup-panel"
+          role="tabpanel"
+          aria-labelledby="signup-tab"
+          data-auth-panel="signup"
+          hidden
+        >
+          <form id="signup-form" class="auth-form" novalidate>
+            <div class="auth-field">
+              <label for="signup-name">Full name</label>
+              <input
+                type="text"
+                id="signup-name"
+                name="name"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                required
+                aria-describedby="signup-name-error"
+              />
+              <p class="auth-field-error" id="signup-name-error" hidden></p>
+            </div>
+
+            <div class="auth-field">
+              <label for="signup-email">Email address</label>
+              <input
+                type="email"
+                id="signup-email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+                aria-describedby="signup-email-error"
+              />
+              <p class="auth-field-error" id="signup-email-error" hidden></p>
+            </div>
+
+            <div class="auth-field">
+              <label for="signup-password">Password</label>
+
+              <div class="auth-password-wrap">
+                <input
+                  type="password"
+                  id="signup-password"
+                  name="password"
+                  placeholder="At least 8 characters"
+                  autocomplete="new-password"
+                  required
+                  aria-describedby="signup-password-error"
+                />
+
+                <button
+                  type="button"
+                  class="auth-password-toggle"
+                  data-password-toggle="signup-password"
+                  aria-label="Show password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+
+              <p class="auth-field-error" id="signup-password-error" hidden></p>
+            </div>
+
+            <div class="auth-field">
+              <label for="signup-confirm-password">Confirm password</label>
+
+              <div class="auth-password-wrap">
+                <input
+                  type="password"
+                  id="signup-confirm-password"
+                  name="confirmPassword"
+                  placeholder="Enter your password again"
+                  autocomplete="new-password"
+                  required
+                  aria-describedby="signup-confirm-password-error"
+                />
+
+                <button
+                  type="button"
+                  class="auth-password-toggle"
+                  data-password-toggle="signup-confirm-password"
+                  aria-label="Show password"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+
+              <p
+                class="auth-field-error"
+                id="signup-confirm-password-error"
+                hidden
+              ></p>
+            </div>
+
+            <div class="auth-terms-field">
+              <input
+                type="checkbox"
+                id="signup-terms"
+                name="terms"
+                required
+                aria-describedby="signup-terms-error"
+              />
+
+              <label for="signup-terms">
+                I agree to the
+                <a href="privacy.html" class="auth-text-link">Privacy Policy</a
+                >.
+              </label>
+            </div>
+
+            <p
+              class="auth-field-error auth-terms-error"
+              id="signup-terms-error"
+              hidden
+            ></p>
+
+            <p
+              class="auth-form-message"
+              id="signup-message"
+              role="status"
+              aria-live="polite"
+              hidden
+            ></p>
+
+            <button type="submit" class="auth-submit">Create Account</button>
+          </form>
+
+          <p class="auth-switch-prompt">
+            Already have an account?
+            <button type="button" data-switch-view="login">Log in</button>
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
