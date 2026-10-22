@@ -671,20 +671,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* Landing Page */
-const landingSymptomForm = document.querySelector(
-  "#landing-symptom-form"
-);
+const landingSymptomForm = document.querySelector("#landing-symptom-form");
 
-const landingSymptomResult = document.querySelector(
-  "#landing-symptom-result"
-);
+const landingSymptomResult = document.querySelector("#landing-symptom-result");
 
 if (landingSymptomForm && landingSymptomResult) {
   landingSymptomForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const selectedSymptoms = landingSymptomForm.querySelectorAll(
-      'input[name="symptoms"]:checked'
+      'input[name="symptoms"]:checked',
     );
 
     if (selectedSymptoms.length === 0) {
@@ -699,3 +695,511 @@ if (landingSymptomForm && landingSymptomResult) {
     landingSymptomResult.classList.add("hidden");
   });
 }
+
+// Records Page
+const recordsList = document.querySelector("#records-list");
+
+if (recordsList) {
+  const recordsForm = document.querySelector("#records-form");
+  const recordsFormPanel = document.querySelector("#records-form-panel");
+  const recordsAddToggle = document.querySelector("#records-add-toggle");
+  const recordsFormClose = document.querySelector("#records-form-close");
+  const recordsCancel = document.querySelector("#records-cancel");
+  const recordsFormMessage = document.querySelector("#records-form-message");
+  const recordsSearchInput = document.querySelector("#records-search-input");
+  const recordsTypeFilter = document.querySelector("#records-type-filter");
+  const recordsEmpty = document.querySelector("#records-empty");
+  const recordsReset = document.querySelector("#records-reset");
+  const recordsVisibleCount = document.querySelector("#records-visible-count");
+
+  const recordsTotal = document.querySelector("#records-total");
+  const recordsChecks = document.querySelector("#records-checks");
+  const recordsConcerns = document.querySelector("#records-concerns");
+
+  const today = new Date();
+  const todayString = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0"),
+    String(today.getDate()).padStart(2, "0"),
+  ].join("-");
+
+  let healthRecords = [
+    {
+      id: 1,
+      title: "Morning flock health check",
+      type: "Health Check",
+      date: "2026-10-19",
+      flock: "Main layer flock",
+      observation:
+        "General activity and feed intake were observed during the morning check.",
+      action:
+        "Continue routine observation and ensure clean water is available.",
+    },
+    {
+      id: 2,
+      title: "Reduced appetite observed",
+      type: "Health Concern",
+      date: "2026-10-18",
+      flock: "Main layer flock",
+      observation: "Some birds appeared less interested in feed than usual.",
+      action:
+        "Observe affected birds closely and seek veterinary advice if the concern persists or worsens.",
+    },
+    {
+      id: 3,
+      title: "Drinker cleaning",
+      type: "General Observation",
+      date: "2026-10-17",
+      flock: "Main layer flock",
+      observation: "Routine cleaning of drinking equipment was recorded.",
+      action: "Refilled drinkers with clean water.",
+    },
+    {
+      id: 4,
+      title: "Follow-up observation",
+      type: "Health Check",
+      date: "2026-10-16",
+      flock: "Main layer flock",
+      observation:
+        "A follow-up observation was recorded after an earlier health concern.",
+      action:
+        "Continue monitoring and contact a poultry veterinarian if signs worsen.",
+    },
+  ];
+
+  function formatRecordDate(dateString) {
+    const date = new Date(`${dateString}T12:00:00`);
+
+    if (Number.isNaN(date.getTime())) {
+      return dateString;
+    }
+
+    return new Intl.DateTimeFormat("en-NG", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }).format(date);
+  }
+
+  function createTextElement(tagName, className, text) {
+    const element = document.createElement(tagName);
+    element.className = className;
+    element.textContent = text;
+    return element;
+  }
+
+  function createRecordCard(record) {
+    const card = document.createElement("article");
+    card.className = "records-item";
+
+    const top = document.createElement("div");
+    top.className = "records-item-top";
+
+    const headingGroup = document.createElement("div");
+    const title = createTextElement("h3", "", record.title);
+    const meta = createTextElement(
+      "div",
+      "records-item-meta",
+      `${formatRecordDate(record.date)} · ${record.flock}`,
+    );
+
+    headingGroup.append(title, meta);
+
+    const typeBadge = createTextElement(
+      "span",
+      "records-type-badge",
+      record.type,
+    );
+    typeBadge.dataset.type = record.type;
+
+    top.append(headingGroup, typeBadge);
+    card.append(top);
+
+    card.append(
+      createTextElement("p", "records-item-observation", record.observation),
+    );
+
+    if (record.action) {
+      const action = document.createElement("p");
+      action.className = "records-item-action";
+
+      const label = document.createElement("strong");
+      label.textContent = "Action taken: ";
+
+      action.append(label, document.createTextNode(record.action));
+      card.append(action);
+    }
+
+    return card;
+  }
+
+  function updateSummary() {
+    recordsTotal.textContent = healthRecords.length;
+
+    recordsChecks.textContent = healthRecords.filter(
+      (record) => record.type === "Health Check",
+    ).length;
+
+    recordsConcerns.textContent = healthRecords.filter(
+      (record) => record.type === "Health Concern",
+    ).length;
+  }
+
+  function renderRecords() {
+    const searchTerm = recordsSearchInput.value.trim().toLowerCase();
+    const selectedType = recordsTypeFilter.value;
+
+    const filteredRecords = healthRecords
+      .filter((record) => {
+        const matchesType =
+          selectedType === "all" || record.type === selectedType;
+
+        const searchableText = [
+          record.title,
+          record.type,
+          record.date,
+          record.flock,
+          record.observation,
+          record.action,
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return matchesType && searchableText.includes(searchTerm);
+      })
+      .sort((a, b) => b.date.localeCompare(a.date));
+
+    recordsList.replaceChildren(...filteredRecords.map(createRecordCard));
+
+    recordsEmpty.classList.toggle("hidden", filteredRecords.length !== 0);
+
+    recordsVisibleCount.textContent =
+      `${filteredRecords.length} ` +
+      `${filteredRecords.length === 1 ? "record" : "records"}`;
+
+    updateSummary();
+  }
+
+  function openRecordsForm() {
+    recordsFormPanel.classList.remove("hidden");
+    recordsAddToggle.setAttribute("aria-expanded", "true");
+    recordsFormMessage.textContent = "";
+
+    const dateInput = recordsForm.elements.date;
+    dateInput.value = todayString;
+
+    document.querySelector("#record-title").focus();
+  }
+
+  function closeRecordsForm() {
+    recordsFormPanel.classList.add("hidden");
+    recordsAddToggle.setAttribute("aria-expanded", "false");
+    recordsFormMessage.textContent = "";
+    recordsAddToggle.focus();
+  }
+
+  recordsAddToggle.addEventListener("click", () => {
+    const isOpen = recordsAddToggle.getAttribute("aria-expanded") === "true";
+
+    if (isOpen) {
+      closeRecordsForm();
+    } else {
+      openRecordsForm();
+    }
+  });
+
+  recordsFormClose.addEventListener("click", closeRecordsForm);
+  recordsCancel.addEventListener("click", closeRecordsForm);
+
+  recordsSearchInput.addEventListener("input", renderRecords);
+  recordsTypeFilter.addEventListener("change", renderRecords);
+
+  recordsReset.addEventListener("click", () => {
+    recordsSearchInput.value = "";
+    recordsTypeFilter.value = "all";
+    renderRecords();
+    recordsSearchInput.focus();
+  });
+
+  recordsForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(recordsForm);
+    const date = String(formData.get("date") || "");
+    const title = String(formData.get("title") || "").trim();
+    const flock = String(formData.get("flock") || "").trim();
+    const observation = String(formData.get("observation") || "").trim();
+
+    if (!title || !flock || !observation || !date) {
+      recordsFormMessage.textContent = "Please complete all required fields.";
+      return;
+    }
+
+    if (date > todayString) {
+      recordsFormMessage.textContent =
+        "The observation date cannot be in the future.";
+      return;
+    }
+
+    const newRecord = {
+      id: Date.now(),
+      title,
+      type: String(formData.get("type")),
+      date,
+      flock,
+      observation,
+      action: String(formData.get("action") || "").trim(),
+    };
+
+    healthRecords.push(newRecord);
+
+    recordsForm.reset();
+    recordsFormMessage.textContent = "";
+    recordsSearchInput.value = "";
+    recordsTypeFilter.value = "all";
+
+    renderRecords();
+    closeRecordsForm();
+
+    recordsList.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+
+  renderRecords();
+}
+
+/* Vaccinations page */
+(() => {
+  const list = document.querySelector("#vaccination-list");
+  if (!list) return;
+
+  const formPanel = document.querySelector("#vaccination-form-panel");
+  const form = document.querySelector("#vaccination-form");
+  const filter = document.querySelector("#vaccination-status-filter");
+  const emptyState = document.querySelector("#vaccination-empty");
+  const error = document.querySelector("#vaccination-form-error");
+
+  const today = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  // Sample entries provide initial content until a backend is connected.
+  // Confirm actual flock schedules with a qualified poultry veterinarian.
+  let vaccinations = [
+    {
+      id: 1,
+      vaccine: "Newcastle disease vaccine",
+      flock: "Layer flock A",
+      date: "2026-10-25",
+      nextDue: "",
+      status: "upcoming",
+      notes: "Confirm product instructions and flock schedule.",
+    },
+    {
+      id: 2,
+      vaccine: "Gumboro (infectious bursal disease)",
+      flock: "Broiler flock B",
+      date: "2026-10-28",
+      nextDue: "",
+      status: "upcoming",
+      notes: "Example schedule entry; verify with the attending veterinarian.",
+    },
+    {
+      id: 3,
+      vaccine: "Newcastle disease vaccine",
+      flock: "Layer flock A",
+      date: "2026-10-10",
+      nextDue: "",
+      status: "completed",
+      notes: "Example historical entry.",
+    },
+  ];
+
+  const formatDate = (value) => {
+    if (!value) return "Not set";
+
+    const [year, month, day] = value.split("-").map(Number);
+    return new Intl.DateTimeFormat("en-NG", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }).format(new Date(year, month - 1, day));
+  };
+
+  const getStatus = (item) => {
+    if (item.status === "completed") return "completed";
+    if (item.date < today()) return "overdue";
+    return "upcoming";
+  };
+
+  const createText = (tag, className, value) => {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    element.textContent = value;
+    return element;
+  };
+
+  const render = () => {
+    list.replaceChildren();
+
+    const selectedStatus = filter.value;
+    const visible = vaccinations.filter((item) => {
+      const status = getStatus(item);
+      return selectedStatus === "all" || selectedStatus === status;
+    });
+
+    visible.sort((a, b) => a.date.localeCompare(b.date));
+
+    visible.forEach((item) => {
+      const status = getStatus(item);
+      const article = document.createElement("article");
+      article.className = "vaccination-item";
+
+      const details = document.createElement("div");
+      details.append(
+        createText("h3", "", item.vaccine),
+        createText("p", "", `Flock: ${item.flock}`),
+        createText(
+          "p",
+          "",
+          `${status === "completed" ? "Administered" : "Scheduled"}: ${formatDate(item.date)}`,
+        ),
+      );
+
+      if (item.nextDue) {
+        details.append(
+          createText("p", "", `Next due: ${formatDate(item.nextDue)}`),
+        );
+      }
+
+      if (item.notes) {
+        details.append(createText("p", "", item.notes));
+      }
+
+      const side = document.createElement("div");
+      side.className = "vaccination-item-side";
+
+      const statusLabel =
+        status === "completed"
+          ? "Completed"
+          : status === "overdue"
+            ? "Overdue"
+            : "Upcoming";
+
+      const badge = createText(
+        "span",
+        `vaccination-status vaccination-status-${status}`,
+        statusLabel,
+      );
+
+      side.append(badge);
+
+      if (status !== "completed") {
+        const markButton = createText(
+          "button",
+          "vaccination-mark-button",
+          "Mark administered",
+        );
+        markButton.type = "button";
+        markButton.addEventListener("click", () => {
+          item.status = "completed";
+          item.date = today();
+          render();
+        });
+        side.append(markButton);
+      }
+
+      article.append(details, side);
+      list.append(article);
+    });
+
+    emptyState.hidden = visible.length > 0;
+
+    document.querySelector("#vaccination-total").textContent =
+      vaccinations.length;
+    document.querySelector("#vaccination-upcoming").textContent =
+      vaccinations.filter((item) => getStatus(item) === "upcoming").length;
+    document.querySelector("#vaccination-completed").textContent =
+      vaccinations.filter((item) => getStatus(item) === "completed").length;
+    document.querySelector("#vaccination-overdue").textContent =
+      vaccinations.filter((item) => getStatus(item) === "overdue").length;
+  };
+
+  const openForm = () => {
+    formPanel.hidden = false;
+    form.elements.date.value = today();
+    error.hidden = true;
+    document.querySelector("#vaccination-form-heading").textContent =
+      "Record vaccination";
+    formPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    form.elements.vaccine.focus();
+  };
+
+  const closeForm = () => {
+    formPanel.hidden = true;
+    error.hidden = true;
+    form.reset();
+  };
+
+  document
+    .querySelector("#open-vaccination-form")
+    .addEventListener("click", openForm);
+
+  document
+    .querySelector("#close-vaccination-form")
+    .addEventListener("click", closeForm);
+
+  document
+    .querySelector("#cancel-vaccination-form")
+    .addEventListener("click", closeForm);
+
+  filter.addEventListener("change", render);
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    error.hidden = true;
+
+    const data = new FormData(form);
+    const vaccine = String(data.get("vaccine") || "").trim();
+    const flock = String(data.get("flock") || "").trim();
+    const date = String(data.get("date") || "");
+    const nextDue = String(data.get("nextDue") || "");
+    const status = String(data.get("status") || "upcoming");
+    const notes = String(data.get("notes") || "").trim();
+
+    if (!vaccine || !flock || !date) {
+      error.textContent = "Enter the vaccine name, flock, and date.";
+      error.hidden = false;
+      return;
+    }
+
+    if (nextDue && nextDue < date) {
+      error.textContent =
+        "The next due date cannot be earlier than the vaccination date.";
+      error.hidden = false;
+      return;
+    }
+
+    vaccinations.push({
+      id: Date.now(),
+      vaccine,
+      flock,
+      date,
+      nextDue,
+      status,
+      notes,
+    });
+
+    filter.value = "all";
+    closeForm();
+    render();
+  });
+
+  render();
+})();

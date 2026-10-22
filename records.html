@@ -12,7 +12,10 @@
 
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/loutron.css" />
+
     <script src="js/main.js" defer></script>
+    <script src="js/loutron.js" defer></script>
   </head>
 
   <body class="app-page">
@@ -251,8 +254,246 @@
           </div>
         </header>
 
-        <main>
-          <!--main content-->
+        <main class="app-content" id="main-content">
+          <div class="records-page">
+            <section class="records-header" aria-labelledby="records-title">
+              <div>
+                <p class="dashboard-eyebrow">FLOCK HEALTH MANAGEMENT</p>
+                <h1 id="records-title">Health Records</h1>
+                <p class="records-subtitle">
+                  Keep track of health checks, observations and actions taken
+                  for your flock.
+                </p>
+              </div>
+
+              <button
+                class="landing-button landing-button-primary records-add-button"
+                type="button"
+                id="records-add-toggle"
+                aria-controls="records-form-panel"
+                aria-expanded="false"
+              >
+                <span aria-hidden="true">+</span> Add Record
+              </button>
+            </section>
+
+            <section
+              class="records-summary-grid"
+              aria-label="Health record summary"
+            >
+              <article class="records-summary-card">
+                <span class="records-summary-icon" aria-hidden="true">▤</span>
+                <p>Total Records</p>
+                <strong id="records-total">4</strong>
+                <span class="records-summary-note">Across your flock</span>
+              </article>
+
+              <article class="records-summary-card">
+                <span
+                  class="records-summary-icon records-icon-green"
+                  aria-hidden="true"
+                  >✓</span
+                >
+                <p>Health Checks</p>
+                <strong id="records-checks">2</strong>
+                <span class="records-summary-note">Recorded observations</span>
+              </article>
+
+              <article class="records-summary-card">
+                <span
+                  class="records-summary-icon records-icon-amber"
+                  aria-hidden="true"
+                  >!</span
+                >
+                <p>Health Concerns</p>
+                <strong id="records-concerns">1</strong>
+                <span class="records-summary-note">For follow-up</span>
+              </article>
+            </section>
+
+            <section
+              class="records-form-panel hidden"
+              id="records-form-panel"
+              aria-labelledby="records-form-title"
+            >
+              <div class="records-panel-heading">
+                <div>
+                  <h2 id="records-form-title">Add a Health Record</h2>
+                  <p>Record what you've observed and any action taken.</p>
+                </div>
+                <button
+                  type="button"
+                  class="records-close-button"
+                  id="records-form-close"
+                  aria-label="Close form"
+                >
+                  ×
+                </button>
+              </div>
+
+              <form id="records-form">
+                <div class="records-form-grid">
+                  <div class="records-field">
+                    <label for="record-title">Record title</label>
+                    <input
+                      id="record-title"
+                      name="title"
+                      type="text"
+                      maxlength="100"
+                      placeholder="e.g. Morning flock health check"
+                      required
+                    />
+                  </div>
+
+                  <div class="records-field">
+                    <label for="record-type">Record type</label>
+                    <select id="record-type" name="type" required>
+                      <option value="Health Check">Health Check</option>
+                      <option value="Health Concern">Health Concern</option>
+                      <option value="Treatment Note">Treatment Note</option>
+                      <option value="General Observation">
+                        General Observation
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="records-field">
+                    <label for="record-date">Date observed</label>
+                    <input id="record-date" name="date" type="date" required />
+                  </div>
+
+                  <div class="records-field">
+                    <label for="record-flock">Flock / batch</label>
+                    <input
+                      id="record-flock"
+                      name="flock"
+                      type="text"
+                      maxlength="80"
+                      placeholder="e.g. Main layer flock"
+                      required
+                    />
+                  </div>
+
+                  <div class="records-field records-field-full">
+                    <label for="record-observation">Observation</label>
+                    <textarea
+                      id="record-observation"
+                      name="observation"
+                      rows="3"
+                      maxlength="1000"
+                      placeholder="Describe what you noticed..."
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="records-field records-field-full">
+                    <label for="record-action">Action taken (optional)</label>
+                    <textarea
+                      id="record-action"
+                      name="action"
+                      rows="2"
+                      maxlength="1000"
+                      placeholder="e.g. Separated affected birds for observation"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <p
+                  class="records-form-message"
+                  id="records-form-message"
+                  role="status"
+                ></p>
+
+                <div class="records-form-actions">
+                  <button
+                    type="button"
+                    class="landing-button landing-button-secondary"
+                    id="records-cancel"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    class="landing-button landing-button-primary"
+                  >
+                    Save Record
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <section
+              class="records-list-panel"
+              aria-labelledby="records-list-title"
+            >
+              <div class="records-panel-heading">
+                <div>
+                  <h2 id="records-list-title">All Records</h2>
+                  <p>Review and find previous flock observations.</p>
+                </div>
+                <span class="records-count" id="records-visible-count"
+                  >4 records</span
+                >
+              </div>
+
+              <div class="records-toolbar">
+                <div class="records-search">
+                  <label class="visually-hidden" for="records-search-input">
+                    Search health records
+                  </label>
+                  <span aria-hidden="true">⌕</span>
+                  <input
+                    id="records-search-input"
+                    type="search"
+                    placeholder="Search records..."
+                  />
+                </div>
+
+                <div class="records-filter">
+                  <label class="visually-hidden" for="records-type-filter">
+                    Filter by record type
+                  </label>
+                  <select id="records-type-filter">
+                    <option value="all">All record types</option>
+                    <option value="Health Check">Health Checks</option>
+                    <option value="Health Concern">Health Concerns</option>
+                    <option value="Treatment Note">Treatment Notes</option>
+                    <option value="General Observation">
+                      General Observations
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <p class="records-data-note">
+                The initial entries are illustrative sample records for this
+                demo.
+              </p>
+
+              <div class="records-list" id="records-list" aria-live="polite">
+                <!-- Records are rendered by js/loutron.js -->
+              </div>
+
+              <div class="records-empty hidden" id="records-empty">
+                <span aria-hidden="true">⌕</span>
+                <h3>No matching records</h3>
+                <p>Try another search or filter, or add a new health record.</p>
+                <button
+                  type="button"
+                  class="landing-button landing-button-secondary"
+                  id="records-reset"
+                >
+                  Clear filters
+                </button>
+              </div>
+            </section>
+
+            <p class="records-disclaimer">
+              Health records help you track observations over time. They do not
+              confirm a diagnosis. Contact a qualified poultry veterinarian when
+              a bird appears seriously unwell or a concern persists.
+            </p>
+          </div>
         </main>
 
         <footer class="site-footer">
