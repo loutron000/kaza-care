@@ -2,6 +2,7 @@ import './LandingPage.css'
 import logo from '../assets/logo.png'
 import heroImage from '../assets/hero-image.png'
 import HowItWorks from '../components/HowItWorks'
+import GroundTruth from '../components/GroundTruth'
 
 function Navbar() {
   return (
@@ -72,6 +73,7 @@ function LandingPage() {
       <main>
         <Hero />
         <HowItWorks />
+        <GroundTruth />
       </main>
     </>
   )
