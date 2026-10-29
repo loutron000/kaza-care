@@ -1,14 +1,7 @@
-import FarmerCard from './components/FarmerCard.jsx'
+import LandingPage from './pages/LandingPage.jsx'
 
 function App() {
-  return (
-    <main>
-      <h1>KazaCare</h1>
-
-      <FarmerCard name="Sani" birds={250} />
-      <FarmerCard name="Jemimah" birds={120} />
-    </main>
-  )
+  return <LandingPage />
 }
 
 export default App
