@@ -1,6 +1,7 @@
 import './LandingPage.css'
 import logo from '../assets/logo.png'
 import heroImage from '../assets/hero-image.png'
+import HowItWorks from '../components/HowItWorks'
 
 function Navbar() {
   return (
@@ -70,6 +71,7 @@ function LandingPage() {
       <Navbar />
       <main>
         <Hero />
+        <HowItWorks />
       </main>
     </>
   )
