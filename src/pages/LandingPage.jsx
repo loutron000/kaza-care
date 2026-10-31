@@ -3,6 +3,7 @@ import logo from '../assets/logo.png'
 import heroImage from '../assets/hero-image.png'
 import HowItWorks from '../components/HowItWorks'
 import GroundTruth from '../components/GroundTruth'
+import VeterinaryGrid from '../components/VeterinaryGrid'
 
 function Navbar() {
   return (
@@ -74,6 +75,7 @@ function LandingPage() {
         <Hero />
         <HowItWorks />
         <GroundTruth />
+        <VeterinaryGrid />
       </main>
     </>
   )

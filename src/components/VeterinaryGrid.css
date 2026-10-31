@@ -1,0 +1,206 @@
+
+.veterinary-grid {
+  background-image: url('../assets/auth-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #30232a;
+}
+
+.veterinary-grid__overlay {
+  background: rgba(240, 220, 226, 0.91);
+  padding: 90px 7%;
+}
+
+.veterinary-grid__content {
+  max-width: 1250px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.veterinary-grid__visual {
+  position: relative;
+  min-height: 570px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #d9c2c8;
+}
+
+.veterinary-grid__image-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    145deg,
+    #d8b9c3,
+    #9b6477
+  );
+}
+
+.veterinary-grid__image-message {
+  text-align: center;
+  padding: 25px;
+  color: #fffaf3;
+}
+
+.veterinary-grid__image-message span {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.veterinary-grid__image-message p {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.veterinary-grid__visual-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 65px 28px 28px;
+  background: linear-gradient(
+    transparent,
+    rgba(55, 20, 34, 0.88)
+  );
+  color: #fffaf3;
+}
+
+.veterinary-grid__visual-caption span {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #f1c5d0;
+}
+
+.veterinary-grid__visual-caption h3 {
+  max-width: 350px;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin: 10px 0 0;
+}
+
+.veterinary-grid__eyebrow {
+  color: #70243b;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+  margin: 0 0 14px;
+}
+
+.veterinary-grid__details h2 {
+  color: #50182b;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  line-height: 1.15;
+  margin: 0 0 17px;
+}
+
+.veterinary-grid__intro {
+  color: #74646b;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0 0 28px;
+}
+
+.veterinary-grid__subheading {
+  color: #70243b;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+}
+
+.veterinary-grid__locations {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+}
+
+.veterinary-location {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 17px;
+  background: #fffaf3;
+  border: 1px solid rgba(112, 36, 59, 0.08);
+  border-radius: 13px;
+}
+
+.veterinary-location__icon {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #e5e8d9;
+  color: #657047;
+}
+
+.veterinary-location__icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.veterinary-location h3 {
+  color: #50182b;
+  font-size: 0.9rem;
+  margin: 1px 0 5px;
+}
+
+.veterinary-location p {
+  color: #88777e;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.veterinary-grid__link {
+  display: inline-block;
+  margin-top: 25px;
+  color: #70243b;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.veterinary-grid__link:hover {
+  text-decoration: underline;
+}
+
+.veterinary-grid__note {
+  color: #88777e;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .veterinary-grid__content {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .veterinary-grid__visual {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 550px) {
+  .veterinary-grid__overlay {
+    padding: 65px 6%;
+  }
+
+  .veterinary-grid__locations {
+    grid-template-columns: 1fr;
+  }
+
+  .veterinary-grid__visual {
+    min-height: 330px;
+  }
+}
