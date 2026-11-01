@@ -6,6 +6,7 @@ import GroundTruth from '../components/GroundTruth'
 import VeterinaryGrid from '../components/VeterinaryGrid'
 import FinalCTA from "../components/FinalCTA";
 import Footer from "../components/Footer";
+import SelectRole from "/SelectRole";
 
 function Navbar() {
   return (
@@ -19,15 +20,15 @@ function Navbar() {
         <a className="nav-link active" href="#home">
           Home
         </a>
-        <a className="nav-link" href="#scenario">
+        <a className="nav-link" href="SelectRole">
           Symptom Checker
         </a>
-        <a className="nav-link" href="#veterinary-grid">
+        <a className="nav-link" href="/SelectRole">
           Find a Vet
         </a>
       </nav>
 
-      <a className="button button-primary nav-cta" href="#scenario">
+      <a className="button button-primary nav-cta" href="/SelectRole ">
         Get Started Free <span aria-hidden="true">→</span>
       </a>
     </header>
@@ -50,7 +51,7 @@ function Hero() {
           near your farm in Plateau State.
         </p>
 
-        <a className="button button-primary" href="#scenario">
+        <a className="button button-primary" href="/SelectRole">
           Get Started Free <span aria-hidden="true">→</span>
         </a>
 
