@@ -6,7 +6,7 @@ import GroundTruth from '../components/GroundTruth'
 import VeterinaryGrid from '../components/VeterinaryGrid'
 import FinalCTA from "../components/FinalCTA";
 import Footer from "../components/Footer";
-import SelectRole from "/SelectRole";
+import SelectRole from "../pages/SelectRole";
 
 function Navbar() {
   return (
@@ -20,7 +20,7 @@ function Navbar() {
         <a className="nav-link active" href="#home">
           Home
         </a>
-        <a className="nav-link" href="SelectRole">
+        <a className="nav-link" href="/SelectRole">
           Symptom Checker
         </a>
         <a className="nav-link" href="/SelectRole">
@@ -28,7 +28,7 @@ function Navbar() {
         </a>
       </nav>
 
-      <a className="button button-primary nav-cta" href="/SelectRole ">
+      <a className="button button-primary nav-cta" href="/SelectRole">
         Get Started Free <span aria-hidden="true">→</span>
       </a>
     </header>
