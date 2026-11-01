@@ -1,0 +1,50 @@
+.final-cta {
+  padding: 5rem 1.5rem;
+  background: var(--wine, #70243b);
+  color: var(--cream, #fffaf3);
+  text-align: center;
+}
+
+.final-cta__content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.final-cta h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.15;
+}
+
+.final-cta p {
+  margin: 1.25rem 0 2rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.final-cta__button {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  border-radius: 999px;
+  background: var(--cream, #fffaf3);
+  color: var(--wine, #70243b);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.final-cta__button:hover {
+  background: #f7e9ec;
+  transform: translateY(-2px);
+}
+
+.final-cta__button:focus-visible {
+  outline: 3px solid var(--rose, #dba5b2);
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+  .final-cta {
+    padding: 4rem 1.25rem;
+  }
+}
