@@ -4,6 +4,8 @@ import heroImage from '../assets/hero-image.png'
 import HowItWorks from '../components/HowItWorks'
 import GroundTruth from '../components/GroundTruth'
 import VeterinaryGrid from '../components/VeterinaryGrid'
+import FinalCTA from "../components/FinalCTA";
+import Footer from "../components/Footer";
 
 function Navbar() {
   return (
@@ -76,6 +78,8 @@ function LandingPage() {
         <HowItWorks />
         <GroundTruth />
         <VeterinaryGrid />
+        <FinalCTA />
+        <Footer />  
       </main>
     </>
   )
