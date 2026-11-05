@@ -1,3 +1,4 @@
+import { supabase } from "../lib/supabase";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
@@ -30,6 +31,7 @@ function FarmerAuth() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -53,20 +55,56 @@ function FarmerAuth() {
     setMessage("");
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    if (isSignup && formData.password !== formData.confirmPassword) {
+    if (!isSignup) {
+      setMessage("Login integration is our next step.");
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
       setMessage("Your passwords do not match.");
       return;
     }
 
-    // Temporary demo behaviour. Connect real authentication later.
-    setMessage(
-      isSignup
-        ? "Demo: Your registration details are ready."
-        : "Demo: Login form submitted successfully.",
-    );
+    setIsSubmitting(true);
+    setMessage("");
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: formData.email.trim(),
+        password: formData.password,
+
+        options: {
+          data: {
+            full_name: formData.fullName.trim(),
+            farm_name: formData.farmName.trim() || null,
+            lga: formData.lga,
+          },
+
+          emailRedirectTo: `${window.location.origin}/farmer/login`,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      if (data.user && !data.session) {
+        setMessage(
+          "Account created! Please check your email and click the confirmation link before logging in.",
+        );
+      } else {
+        setMessage(
+          "Account created successfully. You can now continue to login.",
+        );
+      }
+    } catch (error) {
+      setMessage(error.message || "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -274,8 +312,16 @@ function FarmerAuth() {
               </p>
             )}
 
-            <button type="submit" className="auth-submit">
-              {isSignup ? "Create Account →" : "Log In to Farm Dashboard →"}
+            <button
+              type="submit"
+              className="auth-submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting
+                ? "Creating account..."
+                : isSignup
+                  ? "Create Account →"
+                  : "Log In to Farm Dashboard →"}
             </button>
           </form>
 
