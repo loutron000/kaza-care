@@ -1,6 +1,6 @@
 import { supabase } from "../lib/supabase";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import "./FarmerAuth.css";
 
@@ -26,6 +26,7 @@ const plateauLGAs = [
 
 function FarmerAuth() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isSignup = location.pathname === "/farmer/signup";
 
   const [showPassword, setShowPassword] = useState(false);
@@ -58,12 +59,8 @@ function FarmerAuth() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (!isSignup) {
-      setMessage("Login integration is our next step.");
-      return;
-    }
-
-    if (formData.password !== formData.confirmPassword) {
+    // Validate signup passwords before contacting Supabase.
+    if (isSignup && formData.password !== formData.confirmPassword) {
       setMessage("Your passwords do not match.");
       return;
     }
@@ -72,32 +69,41 @@ function FarmerAuth() {
     setMessage("");
 
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email: formData.email.trim(),
-        password: formData.password,
-
-        options: {
-          data: {
-            full_name: formData.fullName.trim(),
-            farm_name: formData.farmName.trim() || null,
-            lga: formData.lga,
+      if (isSignup) {
+        const { data, error } = await supabase.auth.signUp({
+          email: formData.email.trim(),
+          password: formData.password,
+          options: {
+            data: {
+              full_name: formData.fullName.trim(),
+              farm_name: formData.farmName.trim() || null,
+              lga: formData.lga,
+            },
+            emailRedirectTo: `${window.location.origin}/farmer/login`,
           },
+        });
 
-          emailRedirectTo: `${window.location.origin}/farmer/login`,
-        },
-      });
+        if (error) throw error;
 
-      if (error) {
-        throw error;
-      }
-
-      if (data.user && !data.session) {
-        setMessage(
-          "Account created! Please check your email and click the confirmation link before logging in.",
-        );
+        if (data.user && !data.session) {
+          setMessage(
+            "Account created! Please check your email and click the confirmation link before logging in.",
+          );
+        } else {
+          setMessage(
+            "Account created successfully. You can now continue to login.",
+          );
+        }
       } else {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: formData.email.trim(),
+          password: formData.password,
+        });
+
+        if (error) throw error;
+
         setMessage(
-          "Account created successfully. You can now continue to login.",
+          `Welcome back, ${data.user.user_metadata.full_name || "farmer"}! Login successful.`,
         );
       }
     } catch (error) {
@@ -188,15 +194,15 @@ function FarmerAuth() {
               </>
             ) : (
               <div className="form-field">
-                <label htmlFor="email">Phone Number or Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   id="email"
                   name="email"
-                  type="text"
-                  placeholder="Enter your phone number or email"
+                  type="email"
+                  placeholder="Enter your email address"
                   value={formData.email}
                   onChange={handleChange}
-                  autoComplete="username"
+                  autoComplete="email"
                   required
                 />
               </div>
@@ -318,10 +324,12 @@ function FarmerAuth() {
               disabled={isSubmitting}
             >
               {isSubmitting
-                ? "Creating account..."
+                ? isSignup
+                  ? "Creating account..."
+                  : "Logging in..."
                 : isSignup
                   ? "Create Account →"
-                  : "Log In to Farm Dashboard →"}
+                  : "Log In →"}
             </button>
           </form>
 
