@@ -1,4 +1,3 @@
-
 .veterinary-grid {
   background-image: url('../assets/auth-bg.png');
   background-size: cover;
@@ -29,22 +28,13 @@
   background: #d9c2c8;
 }
 
-.veterinary-grid__image-placeholder {
+.veterinary-grid__image {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(
-    145deg,
-    #d8b9c3,
-    #9b6477
-  );
-}
-
-.veterinary-grid__image-message {
-  text-align: center;
-  padding: 25px;
-  color: #fffaf3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .veterinary-grid__image-message span {

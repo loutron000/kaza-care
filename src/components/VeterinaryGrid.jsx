@@ -1,4 +1,5 @@
 import "./VeterinaryGrid.css";
+import veterinaryTeamImage from "../assets/veterinary-team.png";
 
 const locations = [
   {
@@ -82,12 +83,11 @@ function VeterinaryGrid() {
             </p>
           </div>
           <div className="veterinary-grid__visual">
-            <div className="veterinary-grid__image-placeholder">
-              <div className="veterinary-grid__image-message">
-                <span>PHOTO PLACEHOLDER</span>
-                <p>Community poultry health in Plateau State</p>
-              </div>
-            </div>
+            <img
+              className="veterinary-grid__image"
+              src={veterinaryTeamImage}
+              alt="Veterinary personnel supporting poultry health"
+            />
 
             <div className="veterinary-grid__visual-caption">
               <span>COMMUNITY DISPATCH</span>
