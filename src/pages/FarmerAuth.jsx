@@ -102,9 +102,7 @@ function FarmerAuth() {
 
         if (error) throw error;
 
-        setMessage(
-          `Welcome back, ${data.user.user_metadata.full_name || "farmer"}! Login successful.`,
-        );
+        navigate("/farmer/dashboard", { replace: true });
       }
     } catch (error) {
       setMessage(error.message || "Something went wrong. Please try again.");

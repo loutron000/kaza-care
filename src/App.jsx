@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { AuthProvider } from "./context/AuthContext";
@@ -6,6 +5,8 @@ import { AuthProvider } from "./context/AuthContext";
 import LandingPage from "./pages/LandingPage";
 import SelectRole from "./pages/SelectRole";
 import FarmerAuth from "./pages/FarmerAuth";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -17,6 +18,15 @@ function App() {
 
           <Route path="/farmer/login" element={<FarmerAuth />} />
           <Route path="/farmer/signup" element={<FarmerAuth />} />
+
+          <Route
+            path="/farmer/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
