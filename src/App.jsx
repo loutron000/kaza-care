@@ -8,6 +8,7 @@ import FarmerAuth from "./pages/FarmerAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
 import SymptomChecker from "./pages/SymptomChecker";
+import FindVet from "./pages/FindVet";
 
 function App() {
   return (
@@ -34,6 +35,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <SymptomChecker />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/map"
+            element={
+              <ProtectedRoute>
+                <FindVet />
               </ProtectedRoute>
             }
           />
