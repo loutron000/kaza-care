@@ -66,7 +66,7 @@ function Dashboard() {
                 or water intake before issues spread.
               </p>
 
-              <Link to="/SelectRole" className="dashboard-pill-button">
+              <Link to="/farmer/assessment" className="dashboard-pill-button">
                 Start Symptom Check <span>→</span>
               </Link>
 

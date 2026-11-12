@@ -55,7 +55,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/SelectRole"
+          to="/farmer/assessment"
           className={({ isActive }) =>
             `dashboard-nav__link ${isActive ? "active" : ""}`
           }

@@ -7,6 +7,7 @@ import SelectRole from "./pages/SelectRole";
 import FarmerAuth from "./pages/FarmerAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
+import SymptomChecker from "./pages/SymptomChecker";
 
 function App() {
   return (
@@ -24,6 +25,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/farmer/assessment"
+            element={
+              <ProtectedRoute>
+                <SymptomChecker />
               </ProtectedRoute>
             }
           />
