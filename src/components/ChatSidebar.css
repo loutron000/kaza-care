@@ -1,0 +1,295 @@
+.chat-sidebar-mobile-bar,
+.chat-sidebar-menu-toggle,
+.chat-sidebar-backdrop {
+  display: none;
+}
+
+.chat-sidebar {
+  width: 270px;
+  min-width: 270px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 20px 22px;
+  background: #f1e2e5;
+  border-right: 1px solid rgba(80, 24, 43, 0.12);
+}
+
+.chat-sidebar__top {
+  min-height: 0;
+}
+
+.chat-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #50182b;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.chat-sidebar__brand img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.chat-sidebar__profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 45px;
+  padding: 15px 8px;
+  border-bottom: 1px solid rgba(80, 24, 43, 0.13);
+}
+
+.chat-sidebar__avatar {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #50182b;
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.chat-sidebar__user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.chat-sidebar__user-details strong {
+  color: #50182b;
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+}
+
+.chat-sidebar__user-details span {
+  color: #74646b;
+  font-size: 0.77rem;
+}
+
+.chat-sidebar__new-chat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 28px;
+  padding: 13px 15px;
+  border: 0;
+  border-radius: 10px;
+  background: #70243b;
+  color: white;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+
+.chat-sidebar__new-chat:hover {
+  background: #50182b;
+}
+
+.chat-sidebar__new-chat span {
+  font-size: 1.2rem;
+}
+
+.chat-sidebar__section {
+  margin-top: 22px;
+}
+
+.chat-sidebar__search-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #67535b;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chat-sidebar__search-toggle:hover {
+  background: rgba(112, 36, 59, 0.08);
+  color: #50182b;
+}
+
+.chat-sidebar__search-toggle span {
+  font-size: 1.25rem;
+}
+
+.chat-sidebar__search-input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 11px 12px;
+  border: 1px solid rgba(80, 24, 43, 0.2);
+  border-radius: 8px;
+  outline: none;
+  background: white;
+  color: #30232a;
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.chat-sidebar__search-input:focus {
+  border-color: #70243b;
+  box-shadow: 0 0 0 3px rgba(112, 36, 59, 0.1);
+}
+
+.chat-sidebar__recents {
+  margin-top: 35px;
+}
+
+.chat-sidebar__section-title {
+  margin: 0 0 13px 10px;
+  color: #8a737c;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.chat-sidebar__empty {
+  margin: 0;
+  padding: 0 10px;
+  color: #88777d;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.chat-sidebar__bottom {
+  flex-shrink: 0;
+}
+
+.chat-sidebar__logout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 13px 10px;
+  border: 0;
+  background: transparent;
+  color: #50182b;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chat-sidebar__logout:hover {
+  color: #a12d4c;
+}
+
+.chat-sidebar__logout span {
+  font-size: 1.2rem;
+}
+
+.chat-sidebar__error {
+  margin: 0 0 10px;
+  color: #a12d4c;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .chat-sidebar-mobile-bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 68px;
+    padding: 10px 18px;
+    background: #f1e2e5;
+    border-bottom: 1px solid rgba(80, 24, 43, 0.12);
+  }
+
+  .chat-sidebar-mobile-bar .chat-sidebar__brand {
+    font-size: 1.15rem;
+  }
+
+  .chat-sidebar-mobile-bar .chat-sidebar__brand img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .chat-sidebar-menu-toggle {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 9px;
+    background: #70243b;
+    color: white;
+    font-size: 1.6rem;
+    cursor: pointer;
+  }
+
+  .chat-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 1002;
+    width: min(290px, 85vw);
+    min-width: 0;
+    height: 100vh;
+    height: 100dvh;
+    padding: 28px 20px 22px;
+    overflow-y: auto;
+    transform: translateX(-105%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 240ms ease, visibility 240ms ease;
+  }
+
+  .chat-sidebar.is-open {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .chat-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: rgba(25, 15, 19, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 240ms ease, visibility 240ms ease;
+  }
+
+  .chat-sidebar-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .chat-sidebar__profile {
+    margin-top: 35px;
+  }
+}

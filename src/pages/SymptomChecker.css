@@ -1,0 +1,572 @@
+.symptom-layout {
+  min-height: 100vh;
+  background: #fffaf3;
+  color: #30232a;
+}
+
+.symptom-main {
+  min-height: 100vh;
+  margin-left: 270px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 42px;
+}
+
+/* Top navigation */
+
+.symptom-topbar {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid #eadde0;
+}
+
+.symptom-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #74646b;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.symptom-back-link:hover {
+  color: #70243b;
+}
+
+.symptom-back-link span {
+  font-size: 20px;
+}
+
+.symptom-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.symptom-export-button,
+.symptom-new-chat-button {
+  min-height: 38px;
+  padding: 0 17px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.symptom-export-button {
+  border: 1px solid #ddc3cb;
+  background: transparent;
+  color: #70243b;
+}
+
+.symptom-export-button:hover:not(:disabled) {
+  background: #f7e9ec;
+}
+
+.symptom-export-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.symptom-new-chat-button {
+  border: 1px solid #70243b;
+  background: #70243b;
+  color: #fffaf3;
+}
+
+.symptom-new-chat-button:hover {
+  background: #50182b;
+  border-color: #50182b;
+}
+
+/* Disclaimer */
+
+.symptom-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 14px 17px;
+  border: 1px solid #efd3da;
+  border-radius: 12px;
+  background: #f9e9ed;
+}
+
+.symptom-disclaimer__icon {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #70243b;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.symptom-disclaimer p {
+  margin: 0;
+  color: #67414e;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.symptom-disclaimer strong {
+  color: #50182b;
+}
+
+/* Welcome screen */
+
+.symptom-welcome {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 55px 20px 75px;
+}
+
+.symptom-welcome__content {
+  width: 100%;
+  max-width: 690px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.symptom-welcome__icon {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 22px;
+  border-radius: 24px;
+  background: #f7e9ec;
+  font-size: 38px;
+}
+
+.symptom-welcome__eyebrow {
+  margin: 0 0 12px;
+  color: #a17d88;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.symptom-welcome h1 {
+  margin: 0;
+  color: #30232a;
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.symptom-welcome h1 span {
+  color: #70243b;
+}
+
+.symptom-welcome__description {
+  max-width: 510px;
+  margin: 15px 0 30px;
+  color: #74646b;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Message composer */
+
+.symptom-composer {
+  width: 100%;
+  padding: 18px;
+  border: 1px solid #eadde0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(80, 24, 43, 0.055);
+}
+
+.symptom-composer:focus-within {
+  border-color: #c995a4;
+  box-shadow: 0 0 0 3px rgba(112, 36, 59, 0.07);
+}
+
+.symptom-composer textarea {
+  width: 100%;
+  min-height: 65px;
+  resize: vertical;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #30232a;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.symptom-composer textarea::placeholder {
+  color: #a18f96;
+}
+
+.symptom-composer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 13px;
+}
+
+.symptom-composer__tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.symptom-tool-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid #eadde0;
+  border-radius: 30px;
+  background: #fffaf3;
+  color: #74646b;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.symptom-tool-button:hover {
+  border-color: #c995a4;
+  background: #f7e9ec;
+  color: #70243b;
+}
+
+.symptom-tool-button span {
+  font-size: 16px;
+}
+
+.symptom-send-button {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: #70243b;
+  color: #fff;
+  font-size: 23px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.symptom-send-button:hover:not(:disabled) {
+  background: #50182b;
+  transform: translateY(-2px);
+}
+
+.symptom-send-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.symptom-attachment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px 0;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: #f7e9ec;
+  color: #70243b;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.symptom-attachment button {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: #70243b;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.symptom-welcome__footnote {
+  margin-top: 19px;
+  color: #a18f96;
+  font-size: 11px;
+}
+
+.symptom-notice {
+  margin: 12px 0 0;
+  color: #70243b;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Conversation */
+
+.symptom-chat {
+  width: 100%;
+  max-width: 850px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 28px 0 25px;
+}
+
+.symptom-chat__date {
+  align-self: center;
+  margin-bottom: 30px;
+  padding: 7px 15px;
+  border-radius: 30px;
+  background: #f7e9ec;
+  color: #907d84;
+  font-size: 11px;
+}
+
+.symptom-chat__messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.symptom-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 85%;
+}
+
+.symptom-message__avatar {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #70243b;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.symptom-message__body {
+  min-width: 0;
+  padding: 14px 17px;
+  border: 1px solid #eadde0;
+  border-radius: 4px 14px 14px 14px;
+  background: #fff;
+}
+
+.symptom-message__heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.symptom-message__heading strong {
+  color: #70243b;
+  font-size: 12px;
+}
+
+.symptom-message__heading time {
+  color: #a18f96;
+  font-size: 10px;
+}
+
+.symptom-message__body > p {
+  margin: 0;
+  color: #504047;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.symptom-message__attachment {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  color: #70243b;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.symptom-search-empty {
+  color: #907d84;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Honest AI availability notice */
+
+.symptom-unavailable {
+  margin: 30px 0;
+  padding: 16px 18px;
+  border: 1px solid #efd3da;
+  border-radius: 12px;
+  background: #f9e9ed;
+}
+
+.symptom-unavailable strong {
+  color: #70243b;
+  font-size: 13px;
+}
+
+.symptom-unavailable p {
+  margin: 7px 0 0;
+  color: #74646b;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Quick observations and chat composer */
+
+.symptom-chat__composer-area {
+  margin-top: auto;
+}
+
+.symptom-observations {
+  margin-bottom: 16px;
+}
+
+.symptom-observations > p {
+  margin: 0 0 10px;
+  color: #907d84;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+.symptom-observations__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.symptom-observations__options button {
+  padding: 8px 12px;
+  border: 1px solid #ead3da;
+  border-radius: 30px;
+  background: #fff;
+  color: #74646b;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.symptom-observations__options button:hover {
+  border-color: #70243b;
+  background: #f7e9ec;
+  color: #70243b;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .symptom-main {
+    padding: 0 25px;
+  }
+}
+
+@media (max-width: 760px) {
+  .symptom-main {
+    margin-left: 240px;
+    padding: 0 18px;
+  }
+
+  .symptom-topbar {
+    min-height: 70px;
+  }
+
+  .symptom-disclaimer {
+    margin-top: 16px;
+  }
+
+  .symptom-welcome {
+    padding: 40px 5px;
+  }
+}
+
+@media (max-width: 520px) {
+  .symptom-main {
+    margin-left: 0;
+    padding: 0 16px;
+  }
+
+  .symptom-topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 0;
+  }
+
+  .symptom-topbar__actions {
+    width: 100%;
+  }
+
+  .symptom-export-button,
+  .symptom-new-chat-button {
+    flex: 1;
+  }
+
+  .symptom-disclaimer {
+    padding: 12px;
+  }
+
+  .symptom-welcome {
+    padding: 45px 0;
+  }
+
+  .symptom-welcome__icon {
+    width: 65px;
+    height: 65px;
+    font-size: 32px;
+  }
+
+  .symptom-composer {
+    padding: 13px;
+  }
+
+  .symptom-composer__tools {
+    gap: 6px;
+  }
+
+  .symptom-tool-button {
+    padding: 0 9px;
+    font-size: 10px;
+  }
+
+  .symptom-message {
+    max-width: 100%;
+  }
+
+  .symptom-chat {
+    padding-top: 22px;
+  }
+}
+
+.symptom-welcome__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
