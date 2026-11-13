@@ -1,0 +1,150 @@
+.farm-log-layout {
+  min-height: 100vh;
+  background: #faf8f6;
+}
+
+.farm-log-main {
+  margin-left: 270px;
+  padding: 36px 42px;
+  min-width: 0;
+}
+
+.farm-log-header {
+  margin-bottom: 36px;
+}
+
+.farm-log-back {
+  display: inline-block;
+  margin-bottom: 28px;
+  color: #76505b;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.farm-log-profile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.farm-log-profile span {
+  padding: 9px 14px;
+  border-radius: 20px;
+  background: #f3e5e8;
+  color: #70434f;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.farm-log-profile span + span {
+  background: #fff;
+  border: 1px solid #eadfe1;
+  color: #65575b;
+}
+
+.farm-log-eyebrow {
+  color: #98717b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.farm-log-heading h1 {
+  margin: 8px 0;
+  color: #39272d;
+  font-size: clamp(26px, 3vw, 34px);
+}
+
+.farm-log-heading > p:last-child {
+  color: #82757a;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.farm-log-section {
+  padding: 26px;
+  background: #fff;
+  border: 1px solid #eee5e7;
+  border-radius: 16px;
+}
+
+.farm-log-section__heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.farm-log-step {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f5e8eb;
+  color: #854f5e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.farm-log-section__heading h2 {
+  margin: 0 0 6px;
+  color: #39272d;
+  font-size: 17px;
+}
+
+.farm-log-section__heading p {
+  margin: 0;
+  color: #82757a;
+  font-size: 13px;
+}
+
+.farm-log-empty {
+  padding: 34px 20px;
+  border: 1px dashed #d9c7cc;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.farm-log-empty p {
+  margin: 0 0 8px;
+  color: #59434a;
+  font-weight: 600;
+}
+
+.farm-log-empty span {
+  color: #82757a;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.farm-log-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.farm-log-cancel,
+.farm-log-records-link {
+  color: #76505b;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 760px) {
+  .farm-log-main {
+    margin-left: 0;
+    padding: 24px 18px;
+  }
+
+  .farm-log-section {
+    padding: 20px 16px;
+  }
+}

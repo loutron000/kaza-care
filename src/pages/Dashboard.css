@@ -391,34 +391,6 @@
 }
 
 @media (max-width: 760px) {
-  .dashboard-sidebar {
-    position: static;
-    width: 100%;
-    min-height: auto;
-    padding: 17px 20px;
-  }
-
-  .dashboard-user {
-    margin-top: 20px;
-  }
-
-  .dashboard-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 15px;
-  }
-
-  .dashboard-nav__link {
-    flex: 1 1 auto;
-    justify-content: center;
-    padding: 10px;
-    font-size: 0.78rem;
-  }
-
-  .dashboard-sidebar__bottom {
-    margin-top: 12px;
-  }
-
   .dashboard-main {
     margin-left: 0;
   }

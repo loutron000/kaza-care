@@ -9,6 +9,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
 import SymptomChecker from "./pages/SymptomChecker";
 import FindVet from "./pages/FindVet";
+import QuickFarmLog from "./pages/QuickFarmLog";
+import FarmRecords from "./pages/FarmRecords";
 
 function App() {
   return (
@@ -44,6 +46,24 @@ function App() {
             element={
               <ProtectedRoute>
                 <FindVet />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/farmer/quick-log"
+            element={
+              <ProtectedRoute>
+                <QuickFarmLog />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/farmer/records"
+            element={
+              <ProtectedRoute>
+                <FarmRecords />
               </ProtectedRoute>
             }
           />
